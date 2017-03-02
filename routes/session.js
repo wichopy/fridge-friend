@@ -5,17 +5,12 @@ const router = express.Router();
 
 module.exports = (knex) => {
 
-  //Grab all the users
-  // router.get("/", (req, res) => {
-  //   knex
-  //     .select("*")
-  //     .from("users")
-  //     .then((results) => {
-  //       res.json(results);
-  //     });
-  // });
+  //log in page
+  router.get("/", (req, res) => {
+    res.render('login');
+  });
 
-  //login
+  //check credentials.
   router.post("/", (req, res) => {
     knex
       .select("*")
