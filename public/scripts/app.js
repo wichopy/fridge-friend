@@ -1,3 +1,16 @@
+$(document).ready( () => {
+  console.log($(".login"));
+  $(".login").hide()
+  $("#already").on("click", function(){
+    $("#already").hide();
+    $(".register").hide();
+    $(".login").show(400);
+});
+});
+
+
+
+
 $(() => {
   $.ajax({
     method: "GET",

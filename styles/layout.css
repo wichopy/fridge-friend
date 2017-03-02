@@ -1,30 +1,25 @@
-#welcome {
-  text-align: center;
-}
-
 @import url(http://fonts.googleapis.com/css?family=Dosis:300|Lato:300,400,600,700|Roboto+Condensed:300,700|Open+Sans+Condensed:300,600|Open+Sans:400,300,600,700|Maven+Pro:400,700);
 @import url("http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+#welcome {
+  text-align: center; }
+
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 html {
-  background: black;
-}
+  background: black; }
 
 body {
   font-family: "Open Sans";
   font-size: 16px;
   color: White;
   font-smoothing: antialiased;
-  font-weight: 600;
-}
+  font-weight: 600; }
 
 a {
-  color: #BBB;
-}
+  color: #BBB; }
 
 .content:before {
   content: "";
@@ -44,8 +39,7 @@ a {
   -moz-filter: blur(5px);
   -o-filter: blur(5px);
   -ms-filter: blur(5px);
-  filter: blur(5px);
-}
+  filter: blur(5px); }
 
 .content {
   position: absolute;
@@ -63,14 +57,14 @@ a {
   border-radius: 4px;
   -moz-box-shadow: 0 0 10px black;
   -webkit-box-shadow: 0 0 10px black;
-  box-shadow: 0 0 10px black;
-}
-.content .register {
+  box-shadow: 0 0 10px black; }
+
+.content .register .login {
   text-align: center;
   font-size: 2.0rem;
   font-weight: 600;
-  padding-bottom: 30px;
-}
+  padding-bottom: 30px; }
+
 .content input {
   width: 100%;
   font-size: 1.2rem;
@@ -80,8 +74,20 @@ a {
   padding: 10px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  border-radius: 4px;
-}
+  border-radius: 4px; }
+
+.content input[type=checkbox] {
+  display: none; }
+
+.content label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  position: relative;
+  margin-left: 5px;
+  margin-right: 10px;
+  top: 5px; }
 
 .content label:before {
   content: "";
@@ -97,15 +103,25 @@ a {
   background-color: #aaa;
   -moz-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
   -webkit-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
-  box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
-}
+  box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8); }
 
-.content .head {
-  margin: 5%;
-}
-
+/*.content button {
+  width: 100%;
+  font-size: 1.1rem;
+  padding: 10px;
+  margin: 20px 0px;
+  background-color: #66A756;
+  color: White;
+  border: none;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}*/
 .content #already {
   text-align: center;
-  font-size: 0.9rem;
-}
+  font-size: 0.9rem; }
 
+#login {
+  display: none; }
+
+/*# sourceMappingURL=layout.css.map */

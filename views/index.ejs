@@ -12,6 +12,31 @@
   </head>
 
   <body>
-    <h1>Hello World!</h1>
+
+    <div class="content">
+      <h1 id="welcome"> Welcome to Fridge Friend!</h1>
+      <div class="register">
+        <h3 class="head">Create account</h3>
+        <form method="POST" action="/register">
+          <input type="text" name="email" placeholder="E-mail"/>
+          <input type="text" name="username" placeholder="Username"/>
+          <input type="password" name="password" placeholder="Password"/>
+          <input id="reg-button" type="submit" value="Register">
+        </form>
+      </div>
+      <span><a id="already" href="#">Already Registered?</a></span>
+        <div class="login">
+          <h3>Login</h3>
+          <form method="POST" action="/login">
+          <input type="text" name="username" placeholder="Username"/>
+          <input type="password" name="password" placeholder="Password"/>
+          <input id="log-button" type="submit" value="Login">
+        </div>
+    </form>
+
+    </div>
+
+
   </body>
+
 </html>
