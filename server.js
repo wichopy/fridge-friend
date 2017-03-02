@@ -52,8 +52,22 @@ app.use(express.static("public"));
 
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
+/*
+GET /api/users   ->  Grab all users
+*/
+app.use("/users", usersRoutes(knex));
+/*
+POST /users/new  -> Register new user
+*/
 app.use("/food", foodRoutes(knex));
+/*
+GET /food   --> Display grocery/tracking lists.
+*/
 app.use("/session", sessionRoutes(knex));
+/*
+POST /session  -> Post user credentials for login
+DELETE /session  -> Logout of current session
+*/
 // Home page
 app.get("/", (req, res) => {
   res.render("index");
