@@ -17,13 +17,27 @@ module.exports = (knex) => {
   //Register
   router.post("/new", (req, res) => {
     console.log(req.body.name);
+    console.log(req.body.email);
+    console.log(req.body.password);
     knex
-      .select("*")
-      .from("users")
-      .where({ name: req.body.name })
+      .insert({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password
+      })
+      .into("users")
       .then((results) => {
-        console.log(results);
-        res.status(200).send();
+        knex
+          .select("*")
+          .from("users")
+          .where({
+            email: req.body.email
+          })
+          .then((result) => {
+            console.log(result);
+            req.session.user_id = result[0].id;
+            res.redirect("/food");
+          })
       });
   });
 

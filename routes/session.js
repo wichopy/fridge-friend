@@ -6,16 +6,15 @@ const router = express.Router();
 
 
 
-module.exports = (knex, foodRoutes) => {
+module.exports = (knex) => {
 
   //log in page
-  router.get("/", (req, res) => {
-    res.render('login');
-  });
+  // router.get("/", (req, res) => {
+  //   res.render('login');
+  // });
 
   //check credentials.
   router.post("/", (req, res) => {
-    console.log(foodRoutes);
     // console.log(`Your login response looks like this: ${req.body.email, req.body.password}`);
     knex
       .select("*")
@@ -37,7 +36,7 @@ module.exports = (knex, foodRoutes) => {
     // console.log(req.body.id);
     if (req.session.user_id) {
       req.session = null;
-      res.render("index");
+      res.redirect("/");
     }
     res.status(403).send("leave me alone");
     // knex

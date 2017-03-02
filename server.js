@@ -73,7 +73,7 @@ app.use("/food", foodRoutes(knex));
 /*
 GET /food   --> Display grocery/tracking lists.
 */
-app.use("/session", sessionRoutes(knex, foodRoutes));
+app.use("/session", sessionRoutes(knex));
 /*
 GET /session -> Render login page.
 POST /session  -> Post user credentials for login
