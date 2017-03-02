@@ -14,6 +14,8 @@ const knex = require("knex")(knexConfig[ENV]);
 const morgan = require('morgan');
 const knexLogger = require('knex-logger');
 const methodOverride = require('method-override');
+const cookieSession = require('cookie-session');
+
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const sessionRoutes = require("./routes/session");
@@ -35,6 +37,14 @@ app.use("/styles", sass({
   debug: true,
   outputStyle: 'expanded'
 }));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['user_id'],
+
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
+
 //method override must come after body parser or else no worky.
 app.use(methodOverride());
 app.use(methodOverride(function (req, res) {
@@ -63,14 +73,21 @@ app.use("/food", foodRoutes(knex));
 /*
 GET /food   --> Display grocery/tracking lists.
 */
-app.use("/session", sessionRoutes(knex));
+app.use("/session", sessionRoutes(knex, foodRoutes));
 /*
 GET /session -> Render login page.
 POST /session  -> Post user credentials for login
 DELETE /session  -> Logout of current session
 */
+
+
 // Home page
 app.get("/", (req, res) => {
+  //If cookie exists, go directly to food lists.
+  if (req.session.user_id) {
+    res.redirect("/food");
+  }
+  //if no cookies detected, go to register/login splash page.
   res.render("index");
 });
 
