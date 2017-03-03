@@ -42,22 +42,22 @@
             <div class="col-6">
                 <div class='well pre-scrollable'>
                     <h3>Grocery List </h3>
-                    <form id="grocery-list">
-                        <div class="input-group">
+                    <form id="grocery-list" action="/food/shopping" method="post">
+                        <button id="save" type="submit"> Save </button>
+                        <button id="clear"> Clear </button>
+                        <button id="purchased"> Purchased</button>
+                        <div class="input-group" style="background: yellow;">
                             <span class="input-group-addon">
                               <input type="checkbox">
                              </span>
                             <input type="text" class="form-control food-item" name="food-item" placeholder="Feed me food..">
                             <input type="number" class="form-control food-qty" name="food-qty" placeholder="qty">
-                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                            <button type="button" class="btn btn-default"> 
-                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                            </button>
                         </div>
+                        <button id="save" type="submit"> Save </button>
+                        <button id="clear"> Clear </button>
+                        <button id="purchased"> Purchased</button>
                     </form>
-                    <button id="save"> Save </button>
-                    <button id="clear"> Clear </button>
-                    <button id="purchased"> Purchased</button>
+
                 </div>
             </div>
             <div class="col-6">
