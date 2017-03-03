@@ -42,7 +42,10 @@
             <div class="col-6">
                 <div class='well pre-scrollable'>
                     <h3>Grocery List </h3>
-                    <form id="grocery-list">
+                    <form id="grocery-list" action="/food/shopping" method="post">
+                        <button id="save" type="submit"> Save </button>
+                        <button id="clear"> Clear </button>
+                        <button id="purchased"> Purchased</button>
                         <div class="input-group">
                             <span class="input-group-addon">
                               <input type="checkbox">
@@ -53,11 +56,13 @@
                             <button type="button" class="btn btn-default">
                                 <i class="fa fa-trash-o"></i>
                             </button>
+
                         </div>
+                        <button id="save" type="submit"> Save </button>
+                        <button id="clear"> Clear </button>
+                        <button id="purchased"> Purchased</button>
                     </form>
-                    <button id="save"> Save </button>
-                    <button id="clear"> Clear </button>
-                    <button id="purchased"> Purchased</button>
+
                 </div>
             </div>
             <div class="col-6">
