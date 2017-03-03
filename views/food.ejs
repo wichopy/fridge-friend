@@ -6,13 +6,13 @@
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/foods.css" type="text/css" />
     <!-- IF YOU HAVE TOO MANY VERSIONS OF JQUERY INCLUDED, YOU WILL GET ISSUES WITH AJAX! ONLY HAVE ONE!! -->
-    <!--<script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
@@ -36,7 +36,7 @@
         </div>
         <p> Your food lists go here! </p>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid foods">
         <div class="row">
 
             <div class="col-6">
@@ -49,9 +49,9 @@
                              </span>
                             <input type="text" class="form-control food-item" name="food-item" placeholder="Feed me food..">
                             <input type="number" class="form-control food-qty" name="food-qty" placeholder="qty">
-                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                            <button type="button" class="btn btn-default"> 
-                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            <span class="fa fa-exclamation"></span>
+                            <button type="button" class="btn btn-default">
+                                <i class="fa fa-trash-o"></i>
                             </button>
                         </div>
                     </form>
