@@ -16,21 +16,27 @@ module.exports = (knex) => {
 
   //check credentials.
   router.post("/", (req, res) => {
+    console.log(req.body.password);
     // console.log(`Your login response looks like this: ${req.body.email, req.body.password}`);
     knex
       .select("*")
       .from("users")
       .where({ email: req.body.email })
       .then((results) => {
-        // console.log(results[0].password);      
-        bcrypt.compare(req.body.password, results[0].password).then((result) => {
-          if (result) {
-            req.session.user_id = results[0].id;
-            res.redirect("/food/");
-          } else {
-            res.status(401).send("login failed");
-          }
-        });
+
+        console.log(results[0]);
+        if (results) {
+          bcrypt.compare(req.body.password, results[0].password).then((result) => {
+            if (result) {
+              req.session.user_id = results[0].id;
+              res.redirect("/food/");
+            } else {
+              res.status(401).send("login failed");
+            }
+          });
+        } else {
+          res.status(401).send("could not find user");
+        }
       });
   });
 

@@ -23,7 +23,7 @@ module.exports = (knex) => {
     bcrypt.hash(req.body.password, 10).then((hashed) => {
       knex
         .insert({
-          name: req.body.name,
+          username: req.body.name,
           email: req.body.email,
           password: hashed
         })
