@@ -53,8 +53,6 @@ app.use(methodOverride(function (req, res) {
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
     // look in urlencoded POST bodies and delete it
     let method = req.body._method;
-    console.log('inside method override.');
-    console.log(req.body);
     delete req.body._method;
     return method;
   }
