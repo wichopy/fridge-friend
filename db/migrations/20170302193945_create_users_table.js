@@ -1,8 +1,8 @@
 exports.up = function(knex, Promise) {
   return knex.schema.alterTable('users', function (table) {
   	table.renameColumn('name', 'username');
-    table.string('email'); // does not verify @email.com ending atm
-    table.string('password'); // does not go through hash process yet.
+    table.string('email');
+    table.string('password');
   })
   .createTable('ingredients', function(table){
   	table.increments();
