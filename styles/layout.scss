@@ -1,111 +1,120 @@
 #welcome {
-  text-align: center;
+    text-align: center;
 }
 
 @import url(http://fonts.googleapis.com/css?family=Dosis:300|Lato:300,400,600,700|Roboto+Condensed:300,700|Open+Sans+Condensed:300,600|Open+Sans:400,300,600,700|Maven+Pro:400,700);
 @import url("http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 * {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-html {
-  background: black;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: "Open Sans";
-  font-size: 16px;
-  color: White;
-  font-smoothing: antialiased;
-  font-weight: 600;
+    font-family: "Open Sans";
+    font-size: 16px;
+    color: White;
+    font-smoothing: antialiased;
+    font-weight: 600;
 }
 
 a {
-  color: #BBB;
+    color: #BBB;
 }
 
 .content:before {
-  content: "";
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: -1;
-  display: block;
-  background-color: black;
-  background-image: url("http://wallpapers-web.com/data/out/28/3943148-beautiful-kitchen-wallpapers.jpg");
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  -webkit-filter: blur(5px);
-  -moz-filter: blur(5px);
-  -o-filter: blur(5px);
-  -ms-filter: blur(5px);
-  filter: blur(5px);
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    display: block;
+    background-color: black;
+    background-image: url("http://wallpapers-web.com/data/out/28/3943148-beautiful-kitchen-wallpapers.jpg");
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
 }
 
 .content {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 540px;
-  height: 540px;
-  background-color: rgba(10, 10, 10, 0.5);
-  margin: auto auto;
-  padding: 40px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-  -moz-box-shadow: 0 0 10px black;
-  -webkit-box-shadow: 0 0 10px black;
-  box-shadow: 0 0 10px black;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 540px;
+    height: 540px;
+    background-color: rgba(10, 10, 10, 0.5);
+    margin: auto auto;
+    padding: 40px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    -moz-box-shadow: 0 0 10px black;
+    -webkit-box-shadow: 0 0 10px black;
+    box-shadow: 0 0 10px black;
 }
+
 .content .register {
-  text-align: center;
-  font-size: 2.0rem;
-  font-weight: 600;
-  padding-bottom: 30px;
+    text-align: center;
+    font-size: 2.0rem;
+    font-weight: 600;
+    padding-bottom: 30px;
 }
+
 .content input {
-  width: 100%;
-  font-size: 1.2rem;
-  font-family: "Open Sans";
-  margin: 10px 0px;
-  border: none;
-  padding: 10px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
+    width: 100%;
+    font-size: 1.2rem;
+    font-family: "Open Sans";
+    margin: 10px 0px;
+    border: none;
+    padding: 10px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
 }
 
 .content label:before {
-  content: "";
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  position: absolute;
-  left: 0;
-  bottom: 1px;
-  background-color: #aaa;
-  -moz-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
-  -webkit-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
-  box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    background-color: #aaa;
+    -moz-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
+    -webkit-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
 }
 
 .content .head {
-  margin: 5%;
+    margin: 5%;
 }
 
 .content #already {
-  text-align: center;
-  font-size: 0.9rem;
+    text-align: center;
+    font-size: 0.9rem;
 }
 
+.input-group {
+    margin: .5em;
+}
+
+.list-group-item {
+    margin: .5em;
+}
+
+.well {
+    background-color: lightgrey;
+}

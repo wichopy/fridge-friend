@@ -40,7 +40,7 @@
         <div class="row">
 
             <div class="col-6">
-                <div class='well'>
+                <div class='well pre-scrollable'>
                     <h3>Grocery List </h3>
                     <form id="grocery-list">
                         <div class="input-group">
@@ -48,22 +48,50 @@
                               <input type="checkbox">
                              </span>
                             <input type="text" class="form-control food-item" name="food-item" placeholder="Feed me food..">
-
+                            <input type="number" class="form-control food-qty" name="food-qty" placeholder="qty">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <button type="button" class="btn btn-default"> 
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </button>
                         </div>
                     </form>
+                    <button id="save"> Save </button>
+                    <button id="clear"> Clear </button>
+                    <button id="purchased"> Purchased</button>
                 </div>
             </div>
             <div class="col-6">
-                <div class='well'>
+                <div class=' well sink pre-scrollable'>
                     <p> Your Tracked foods list should go here!</p>
-                    <ul>
-                        <li> Hello</li>
-                        <li> There</li>
-                        <li> These </li>
-                        <li> Are </li>
-                        <li> My</li>
-                        <li> Foods </li>
+                    <!--https://v4-alpha.getbootstrap.com/components/list-group/-->
+                    <ul class="list-group">
+                        <li class="list-group-item">Cras justo odio
+                            <input data-qty="3" type="number" class="form-control inv-qty" name="inv-qty" placeholder="qty">
+                        </li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Morbi leo risus</li>
+                        <li class="list-group-item">Porta ac consectetur ac</li>
+                        <li class="list-group-item">Vestibulum at eros</li>
+                        <li class="list-group-item list-group-item-success">Dapibus ac facilisis in</li>
+                        <li class="list-group-item list-group-item-info">Cras sit amet nibh libero</li>
+                        <li class="list-group-item list-group-item-warning">Porta ac consectetur ac</li>
+                        <li class="list-group-item list-group-item-danger">Vestibulum at eros</li>
+                        <li class="list-group-item justify-content-between">
+                            Cras justo odio
+                            <span class="badge badge-default badge-pill">14</span>
+                        </li>
+                        <li class="list-group-item justify-content-between">
+                            Dapibus ac facilisis in
+                            <span class="badge badge-default badge-pill">2</span>
+                        </li>
+                        <li class="list-group-item justify-content-between">
+                            Morbi leo risus
+                            <span class="badge badge-default badge-pill">1</span>
+                        </li>
                     </ul>
+                    <button id="Recipes"> Recipes </button>
+                    <button id="Update"> Update Qtys </button>
+
                 </div>
             </div>
         </div>
