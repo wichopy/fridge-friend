@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <title>Home Page</title>
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
@@ -9,34 +10,34 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
+</head>
 
-  <body>
+<body>
 
     <div class="content">
-      <h1 id="welcome"> Welcome to Fridge Friend!</h1>
-      <div class="register">
-        <h3 class="head">Create account</h3>
-        <form method="POST" action="/register">
-          <input type="text" name="email" placeholder="E-mail"/>
-          <input type="text" name="username" placeholder="Username"/>
-          <input type="password" name="password" placeholder="Password"/>
-          <input id="reg-button" type="submit" value="Register">
-        </form>
-      </div>
-      <span><a id="already" href="#">Already Registered?</a></span>
-        <div class="login">
-          <h3>Login</h3>
-          <form method="POST" action="/login">
-          <input type="text" name="username" placeholder="Username"/>
-          <input type="password" name="password" placeholder="Password"/>
-          <input id="log-button" type="submit" value="Login">
+        <h1 id="welcome"> Welcome to Fridge Friend!</h1>
+        <div class="register">
+            <h3 class="head">Create account</h3>
+            <form method="POST" action="/users/new" id="register">
+                <input type="text" name="email" placeholder="E-mail" />
+                <input type="text" name="name" placeholder="Username" />
+                <input type="password" name="password" placeholder="Password" />
+                <input id="reg-button" type="submit" value="Register">
+            </form>
         </div>
-    </form>
+        <span><a id="already" href="#">Already Registered?</a></span>
+        <div class="login">
+            <h3>Login</h3>
+            <form method="POST" action="/session" id="login">
+                <input type="email" name="email" placeholder="Email" />
+                <input type="password" name="password" placeholder="Password" />
+                <input id="log-button" type="submit" value="Login">
 
+            </form>
+        </div>
     </div>
 
 
-  </body>
+</body>
 
 </html>

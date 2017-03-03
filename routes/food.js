@@ -6,7 +6,21 @@ const food = express.Router();
 module.exports = (knex) => {
 
   food.get("/", (req, res) => {
-    res.render("food");
+    if (req.session.user_id) {
+      knex
+        .select("*")
+        .from("users")
+        .where({ id: req.session.user_id })
+        .then((results) => {
+          let templateVars = {
+            id: results[0].id,
+            name: results[0].name
+          }
+          res.status(200).render("food", templateVars);
+        });
+    } else {
+      res.redirect("/");
+    }
     //   knex
     //     .select("*")
     //     .from("users")

@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-
+const bcrypt = require('bcrypt');
 module.exports = (knex) => {
 
   //Grab all the users
@@ -17,14 +17,32 @@ module.exports = (knex) => {
   //Register
   router.post("/new", (req, res) => {
     console.log(req.body.name);
-    knex
-      .select("*")
-      .from("users")
-      .where({ name: req.body.name })
-      .then((results) => {
-        console.log(results);
-        res.status(200).send();
-      });
+    console.log(req.body.email);
+    console.log(req.body.password);
+    console.log(bcrypt);
+    bcrypt.hash(req.body.password, 10).then((hashed) => {
+      knex
+        .insert({
+          name: req.body.name,
+          email: req.body.email,
+          password: hashed
+        })
+        .into("users")
+        .then((results) => {
+          knex
+            .select("*")
+            .from("users")
+            .where({
+              email: req.body.email
+            })
+            .then((result) => {
+              console.log(result);
+              req.session.user_id = result[0].id;
+              res.redirect("/food");
+            })
+        });
+    });
+
   });
 
   return router;

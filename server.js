@@ -14,10 +14,14 @@ const knex = require("knex")(knexConfig[ENV]);
 const morgan = require('morgan');
 const knexLogger = require('knex-logger');
 const methodOverride = require('method-override');
+const cookieSession = require('cookie-session');
+const bcrypt = require('bcrypt');
+
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const sessionRoutes = require("./routes/session");
 const foodRoutes = require("./routes/food");
+const homeRoutes = require("./routes/splash.js");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -35,6 +39,14 @@ app.use("/styles", sass({
   debug: true,
   outputStyle: 'expanded'
 }));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['user_id'],
+
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
+
 //method override must come after body parser or else no worky.
 app.use(methodOverride());
 app.use(methodOverride(function (req, res) {
@@ -55,7 +67,7 @@ app.use("/api/users", usersRoutes(knex));
 /*
 GET /api/users   ->  Grab all users
 */
-app.use("/users", usersRoutes(knex));
+app.use("/users", usersRoutes(knex, bcrypt));
 /*
 POST /users/new  -> Register new user
 */
@@ -63,16 +75,14 @@ app.use("/food", foodRoutes(knex));
 /*
 GET /food   --> Display grocery/tracking lists.
 */
-app.use("/session", sessionRoutes(knex));
+app.use("/session", sessionRoutes(knex, bcrypt));
 /*
 GET /session -> Render login page.
 POST /session  -> Post user credentials for login
 DELETE /session  -> Logout of current session
 */
-// Home page
-app.get("/", (req, res) => {
-  res.render("index");
-});
+
+app.use("/", homeRoutes());
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);

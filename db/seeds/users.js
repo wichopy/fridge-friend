@@ -1,10 +1,15 @@
-exports.seed = function(knex, Promise) {
+exports.seed = function (knex, Promise) {
   return knex('users').del()
-    .then(function () {
+  .then (() => {knex('ingredients').del()})
+  .then (() => {knex('inventory').del()})
+  .then (() => {
       return Promise.all([
-        knex('users').insert({id: 1, name: 'Alice'}),
-        knex('users').insert({id: 2, name: 'Bob'}),
-        knex('users').insert({id: 3, name: 'Charlie'})
-      ]);
-    });
+        knex('ingredients').insert({ name:"broccolie" }),
+        knex('users').insert({ username: 'Alice', email: "Alice@test.com", password: "password" }),
+        knex('users').insert({ username: 'Bob', email: "Bob@test.com", password: "password" }),
+        knex('users').insert({ username: 'Charlie', email: "Charlie@test.com", password: "password" }),
+      ])
+      .then (() =>{knex('inventory').insert({ userId:1, ingId:1, qty:1})
+      });
+    })
 };
