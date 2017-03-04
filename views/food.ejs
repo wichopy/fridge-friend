@@ -4,136 +4,111 @@
 <head>
     <title>Your Food Lists</title>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/foods.css" type="text/css" />
     <!-- IF YOU HAVE TOO MANY VERSIONS OF JQUERY INCLUDED, YOU WILL GET ISSUES WITH AJAX! ONLY HAVE ONE!! -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <body>
+
     <div class="container-fluid header">
         <div class="row">
-            <div class="col-2"></div>
             <div class='col-8'>
-                <h1>Food Lists</h1>
+                <img id="logo" src="https://s-media-cache-ak0.pinimg.com/736x/cc/4f/93/cc4f9358912141e893982d4908f87d70.jpg">
+                <h1 id="title">Fridge Friend</h1>
             </div>
-            <div class='col-2'>
-                <p class='msg-to-user'> Hello there
-                    <%= name %>, hungry? </p>
+            <div class="col-4">
                 <form method="POST" action="/session">
                     <input type="hidden" name="_method" value="DELETE">
                     <input id="logout-button" type="submit" value="Logout">
                 </form>
+                <p class='msg-to-user'> Hello there
+                    <%= name %>, hungry? </p>
             </div>
         </div>
-        <p> Your food lists go here! </p>
     </div>
+
     <div class="container-fluid foods">
-        <div class="row">
+        <div class="row lists">
 
             <div class="col-6">
-                <div class='well pre-scrollable'>
+                <div class='list-box well'>
                     <h3>Grocery List </h3>
                     <ul id="check-list-box" class="list-group checked-list-box">
                         <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item" data-color="success">eggs <button type="button" class="btn btn-default">
-                                <i class="fa fa-trash-o"></i>
-                            </button>
+                        <li class="list-group-item" data-color="success">eggs
                         </li>
-                        <li class="list-group-item" data-color="info">bacon s="fa fa-trash-o"></i>
-                            </button>
+                        <li class="list-group-item" data-color="info">bacon
                         </li>
-                        <li class="list-group-item" data-color="warning">toast <button type="button" class="btn btn-default">
-                                <i class="fa fa-trash-o"></i>
-                            </button>
+                        <li class="list-group-item" data-color="warning">toast
                         </li>
-                        <li class="list-group-item" data-color="danger">butter <button type="button" class="btn btn-default">
-                                <i class="fa fa-trash-o"></i>
-                            </button>
+                        <li class="list-group-item" data-color="danger">butter
                         </li>
                     </ul>
                     <form id="grocery-list" action="/food/shopping" method="post">
                         <input id="save" type="submit" value="Save">
-                        <input id="clear" type="button" value="clear">
-                        <input id="purchased" type="button" value="purchased">
+                        <input id="clear" type="button" value="Clear">
+                        <input id="purchased" type="button" value="Purchased">
                         <div class="input-group">
-                            <span class="input-group-addon">
+                            <!-- <span class="input-group-addon">
                               <input type="checkbox">
-                             </span>
+                             </span> -->
                             <input type="text" class="form-control food-item" name="food-item" placeholder="Feed me food..">
                             <input type="number" class="form-control food-qty" name="food-qty" placeholder="qty">
                             <button type="button" class="btn btn-default">
                                 <i class="fa fa-trash-o"></i>
                             </button>
                         </div>
-                        <button id="save" type="submit"> Save </button>
+                        <!-- <button id="save" type="submit"> Save </button>
                         <button id="clear"> Clear </button>
-                        <button id="purchased"> Purchased</button>
+                        <button id="purchased"> Purchased</button> -->
                     </form>
 
                 </div>
             </div>
             <div class="col-6">
                 <div class=' well sink pre-scrollable'>
-                    <p> Your Tracked foods list should go here!</p>
-                    <pre id="display-json"></pre>
-                    <!--<button id="Recipes"> Recipes </button>-->
-                    <button class="btn btn-primary col-xs-12" id="get-checked-data">Recipes</button>
-                    <button id="Update"> Update Qtys </button>
-                    <div class="well" style="max-height: 300px;overflow: auto;">
-                        <ul id="check-list-box" class="list-group checked-list-box">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item" data-color="success">eggs</li>
-                            <li class="list-group-item" data-color="info">bacon</li>
-                            <li class="list-group-item" data-color="warning">toast</li>
-                            <li class="list-group-item" data-color="danger">butter</li>
-                        </ul>
-                        <br />
+                </div>
+                <!-- Implementing bootstrap check boxes from : http://bootsnipp.com/snippets/featured/checked-list-group-->
+                <!--https://v4-alpha.getbootstrap.com/components/list-group/-->
+                <div class="list-box col-6">
+                    <div class='well sink'>
+                        <h3>Inventory List</h3>
+                        <pre id="display-json"></pre>
+                        <!--<button id="Recipes"> Recipes </button>-->
+                        <button class="btn btn-primary col-xs-12" id="get-checked-data">Recipes</button>
+                        <button id="Update"> Update Qtys </button>
+                        <div class="well" style="max-height: 300px;overflow: auto;">
+                            <ul id="check-list-box" class="list-group checked-list-box">
+                                <li class="list-group-item">Cras justo odio</li>
+                                <li class="list-group-item" data-color="success">eggs</li>
+                                <li class="list-group-item" data-color="info">bacon</li>
+                                <li class="list-group-item" data-color="warning">toast</li>
+                                <li class="list-group-item" data-color="danger">butter</li>
+                            </ul>
+                            <br />
+                            <ul class="list-group">
+                                <li class="list-group-item">Cras justo odio
+                                    <input data-qty="3" type="number" class="form-control inv-qty" name="inv-qty" placeholder="qty">
+                                </li>
+                                <li class="list-group-item">Dapibus ac facilisis in</li>
+                            </ul>
+                            <button id="Recipes"> Recipes </button>
+                            <button id="Update"> Update Qtys </button>
 
+                        </div>
                     </div>
-
-                    <!-- Implementing bootstrap check boxes from : http://bootsnipp.com/snippets/featured/checked-list-group-->
-                    <!--https://v4-alpha.getbootstrap.com/components/list-group/-->
-                    <ul id="check-list-box" class="list-group checked-list-box">
-                        <li class="list-group-item">Cras justo odio
-                            <input data-qty="3" type="number" class="form-control inv-qty" name="inv-qty" placeholder="qty">
-                        </li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
-                        <li class="list-group-item">Porta ac consectetur ac</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                        <li class="list-group-item list-group-item-success">Dapibus ac facilisis in</li>
-                        <li class="list-group-item list-group-item-info">Cras sit amet nibh libero</li>
-                        <li class="list-group-item list-group-item-warning">Porta ac consectetur ac</li>
-                        <li class="list-group-item list-group-item-danger">Vestibulum at eros</li>
-                        <li class="list-group-item justify-content-between">
-                            Cras justo odio
-                            <span class="badge badge-default badge-pill">14</span>
-                        </li>
-                        <li class="list-group-item justify-content-between">
-                            Dapibus ac facilisis in
-                            <span class="badge badge-default badge-pill">2</span>
-                        </li>
-                        <li class="list-group-item justify-content-between">
-                            Morbi leo risus
-                            <span class="badge badge-default badge-pill">1</span>
-                        </li>
-                    </ul>
-                    <button id="Recipes"> Recipes </button>
-                    <button id="Update"> Update Qtys </button>
-
                 </div>
             </div>
         </div>
-    </div>
 </body>
 
 </html>

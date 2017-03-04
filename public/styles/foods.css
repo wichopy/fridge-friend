@@ -1,9 +1,54 @@
-.form-control food-item {
-  width: 100%;
-  float: right; }
+.header {
+  height: 4em;
+  border: 2px solid black;
+  opacity: 0.8;
+  background-color: white;
+}
 
-.next-input {
+#title {
+  display: inline;
+  line-height: 1.8em;
+  padding: 2em;
+
+}
+
+#logo {
+  height: 3em;
+  margin-bottom: 1em;
+}
+
+.msg-to-user {
+  float:right;
+  display: inline;
+  margin-top: 1em;
+  margin-right: 1em;
+}
+
+#logout-button {
   float: right;
-  width: 100%; }
+  display: inline;
+  margin-top: 1em;
+}
+
+html, body, .foods{
+  height: 100%;
+}
+
+.list-box {
+  min-height: 85vh;
+  max-height: 85vh;
+  overflow: scroll;
+}
+
+.foods h3 {
+  margin: 1em;
+}
+
+body {
+  margin: 0;
+  background-image: url("http://lamaisonaz.com/blog/wp-content/uploads/2015/02/iStock_000041811192_Large.jpg");
+  background-size: 1440px 800px;
+  background-repeat: no-repeat;
+  display: compact; }
 
 /*# sourceMappingURL=foods.css.map */

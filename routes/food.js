@@ -60,7 +60,8 @@ module.exports = (knex) => {
   // Recipe button is clicked, places all elements in a str.
   food.post("/recipes", (req, res) => {
     if (req.session.user_id) {
-
+      console.log(req.body);
+      res.status(200);
     } else {
       res.redirect("/");
     }
