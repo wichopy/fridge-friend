@@ -15,9 +15,6 @@ $(document).ready(() => {
       i++;
       $('.input-group').last().after(
         `<div class="input-group" style="background: pink;">
-      <span class="input-group-addon">
-        <input type="checkbox">
-      </span>
       <input type="text" class="form-control food-item " name="food-item" data-row="${i}" value = "">
       <input type="number" class="form-control food-qty" name="food-qty" placeholder="qty">
             <button type="button" class="btn btn-default trashbutton">
@@ -26,6 +23,8 @@ $(document).ready(() => {
     </div>`);
     }
   });
+
+
   $("#grocery-list").on("click", ".trashbutton", function (ev) {
     console.log(ev.target);
     $(ev.target).closest(".input-group").remove();
@@ -34,6 +33,9 @@ $(document).ready(() => {
     ev.preventDefault();
     // console.log($(ev.target).serialize());
     if (ev.target.id === "save") {
+      $(".input-group").prepend(`<span class="input-group-addon">
+                              <input type="checkbox">
+                             </span>`);
       $.ajax({
         url: "/food/shopping",
         method: 'POST',
@@ -47,7 +49,7 @@ $(document).ready(() => {
     if (ev.target.id === "clear") {
       $(".input-group").remove();
       $('#purchased').after(`<div class="input-group" style="background: pink;">
-      <span class="input-group-addon">
+       <span class="input-group-addon">
         <input type="checkbox">
       </span>
       <input type="text" class="form-control food-item" name="food-item" data-row="${i}" value = "">

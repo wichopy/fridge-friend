@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/styles/foods.css" type="text/css" />
     <!-- IF YOU HAVE TOO MANY VERSIONS OF JQUERY INCLUDED, YOU WILL GET ISSUES WITH AJAX! ONLY HAVE ONE!! -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
-
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
@@ -43,12 +43,12 @@
                     <h3>Grocery List </h3>
                     <form id="grocery-list" action="/food/shopping" method="post">
                         <input id="save" type="submit" value="Save">
-                        <input id="clear" type="button" value="clear">
-                        <input id="purchased" type="button" value="purchased">
+                        <input id="clear" type="button" value="Clear">
+                        <input id="purchased" type="button" value="Purchased">
                         <div class="input-group">
-                            <span class="input-group-addon">
+                            <!-- <span class="input-group-addon">
                               <input type="checkbox">
-                             </span>
+                             </span> -->
                             <input type="text" class="form-control food-item" name="food-item" placeholder="Feed me food..">
                             <input type="number" class="form-control food-qty" name="food-qty" placeholder="qty">
                             <button type="button" class="btn btn-default">
@@ -56,9 +56,9 @@
                             </button>
 
                         </div>
-                        <button id="save" type="submit"> Save </button>
+                        <!-- <button id="save" type="submit"> Save </button>
                         <button id="clear"> Clear </button>
-                        <button id="purchased"> Purchased</button>
+                        <button id="purchased"> Purchased</button> -->
                     </form>
 
                 </div>
@@ -72,7 +72,7 @@
                             <input data-qty="3" type="number" class="form-control inv-qty" name="inv-qty" placeholder="qty">
                         </li>
                         <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
+                      <!--   <li class="list-group-item">Morbi leo risus</li>
                         <li class="list-group-item">Porta ac consectetur ac</li>
                         <li class="list-group-item">Vestibulum at eros</li>
                         <li class="list-group-item list-group-item-success">Dapibus ac facilisis in</li>
@@ -90,7 +90,7 @@
                         <li class="list-group-item justify-content-between">
                             Morbi leo risus
                             <span class="badge badge-default badge-pill">1</span>
-                        </li>
+                        </li> -->
                     </ul>
                     <button id="Recipes"> Recipes </button>
                     <button id="Update"> Update Qtys </button>
