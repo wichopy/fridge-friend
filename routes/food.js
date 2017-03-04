@@ -94,8 +94,8 @@ module.exports = (knex) => {
               } // else statement
             }); // .then
           }); // Promise, end.
-        } // if item+qty is food, ends.
         Promise.all([appendIng, appendInv]).then().catch();
+        } // if item+qty is food, ends.
       } // for loop cycling each submitted item
     } else {
       res.redirect("/");
@@ -107,6 +107,7 @@ module.exports = (knex) => {
     if (req.session.user_id) {
       console.log(req.body);
       let foodItem = req.body["food-item"];
+
       for (let index in foodItem){
         var pendCount = 0;
         knex
