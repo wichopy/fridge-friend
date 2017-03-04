@@ -74,8 +74,9 @@ $(document).ready(() => {
     }
   });
   $('.list-group.checked-list-box .list-group-item').each(function () {
-
     // Settings
+    // console.log($(this));
+    console.log(this);
     var $widget = $(this),
       $checkbox = $('<input type="checkbox" class="hidden" />'),
       color = ($widget.data('color') ? $widget.data('color') : "primary"),
@@ -138,8 +139,11 @@ $(document).ready(() => {
       }
     }
     init();
+    console.log(this);
   });
-
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').focus()
+  })
   $('#get-ingredients').on('click', function (event) {
     event.preventDefault();
     var checkedItems = [];
