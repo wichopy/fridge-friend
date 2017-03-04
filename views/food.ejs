@@ -67,8 +67,23 @@
             <div class="col-6">
                 <div class=' well sink pre-scrollable'>
                     <p> Your Tracked foods list should go here!</p>
-                    <button id="Recipes"> Recipes </button>
+                    <pre id="display-json"></pre>
+                    <!--<button id="Recipes"> Recipes </button>-->
+                    <button class="btn btn-primary col-xs-12" id="get-checked-data">Recipes</button>
                     <button id="Update"> Update Qtys </button>
+                    <div class="well" style="max-height: 300px;overflow: auto;">
+                        <ul id="check-list-box" class="list-group checked-list-box">
+                            <li class="list-group-item">Cras justo odio</li>
+                            <li class="list-group-item" data-color="success">eggs</li>
+                            <li class="list-group-item" data-color="info">bacon</li>
+                            <li class="list-group-item" data-color="warning">toast</li>
+                            <li class="list-group-item" data-color="danger">butter</li>
+                        </ul>
+                        <br />
+
+                    </div>
+
+                    <!-- Implementing bootstrap check boxes from : http://bootsnipp.com/snippets/featured/checked-list-group-->
                     <!--https://v4-alpha.getbootstrap.com/components/list-group/-->
                     <ul id="check-list-box" class="list-group checked-list-box">
                         <li class="list-group-item">Cras justo odio
