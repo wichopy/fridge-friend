@@ -26,7 +26,7 @@ $(document).ready(() => {
           // console.log($(this).val());
           currentLi.html(`<span class="state-icon glyphicon glyphicon-unchecked"></span><input type="checkbox" class="hidden"> ${$(".food-item").val()}`);
             $.ajax({
-              url: "/food/inventory",
+              url: "/food/shopping",
               method: 'POST',
               data: { 'food-item': $(".food-item").val().trim() }
               }).then((res) => {
