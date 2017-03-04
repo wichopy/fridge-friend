@@ -42,6 +42,24 @@
             <div class="col-6">
                 <div class='well pre-scrollable'>
                     <h3>Grocery List </h3>
+                    <ul id="check-list-box" class="list-group checked-list-box">
+                        <li class="list-group-item">Cras justo odio</li>
+                        <li class="list-group-item" data-color="success">eggs <button type="button" class="btn btn-default">
+                                <i class="fa fa-trash-o"></i>
+                            </button>
+                        </li>
+                        <li class="list-group-item" data-color="info">bacon s="fa fa-trash-o"></i>
+                            </button>
+                        </li>
+                        <li class="list-group-item" data-color="warning">toast <button type="button" class="btn btn-default">
+                                <i class="fa fa-trash-o"></i>
+                            </button>
+                        </li>
+                        <li class="list-group-item" data-color="danger">butter <button type="button" class="btn btn-default">
+                                <i class="fa fa-trash-o"></i>
+                            </button>
+                        </li>
+                    </ul>
                     <form id="grocery-list" action="/food/shopping" method="post">
                         <input id="save" type="submit" value="Save">
                         <input id="clear" type="button" value="clear">
@@ -55,7 +73,6 @@
                             <button type="button" class="btn btn-default">
                                 <i class="fa fa-trash-o"></i>
                             </button>
-
                         </div>
                         <button id="save" type="submit"> Save </button>
                         <button id="clear"> Clear </button>
