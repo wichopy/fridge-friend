@@ -42,16 +42,15 @@
                 <div class='list-box well'>
                     <h3>Grocery List </h3>
                     <form id="grocery-list" action="/food/shopping" method="post">
-                        <button id="save" type="submit"> Save </button>
-                        <button id="clear"> Clear </button>
-                        <button id="purchased"> Purchased</button>
+                        <input id="save" type="submit" value="Save">
+                        <input id="clear" type="button" value="clear">
+                        <input id="purchased" type="button" value="purchased">
                         <div class="input-group">
                             <span class="input-group-addon">
                               <input type="checkbox">
                              </span>
                             <input type="text" class="form-control food-item" name="food-item" placeholder="Feed me food..">
                             <input type="number" class="form-control food-qty" name="food-qty" placeholder="qty">
-
                             <button type="button" class="btn btn-default">
                                 <i class="fa fa-trash-o"></i>
                             </button>

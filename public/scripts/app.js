@@ -18,23 +18,57 @@ $(document).ready(() => {
       <span class="input-group-addon">
         <input type="checkbox">
       </span>
-      <input type="text" class="form-control food-item" name="food-item" data-row="${i}" value = "">
+      <input type="text" class="form-control food-item " name="food-item" data-row="${i}" value = "">
       <input type="number" class="form-control food-qty" name="food-qty" placeholder="qty">
+            <button type="button" class="btn btn-default trashbutton">
+        <i class="fa fa-trash-o"></i>
+      </button>
     </div>`);
     }
   });
-  $("#grocery-list").on('submit', (ev) => {
+  $("#grocery-list").on("click", ".trashbutton", function (ev) {
+    console.log(ev.target);
+    $(ev.target).closest(".input-group").remove();
+  });
+  $("#grocery-list").on('click', (ev) => {
     ev.preventDefault();
-    console.log($(ev.target).serialize());
-    $.ajax({
-      url: "/food/shopping",
-      method: 'POST',
-      data: $(ev.target).serialize()
-    }).then((res) => {
-      console.log(res);
-    }).catch((err) => {
-      console.error(err);
-    });
+    // console.log($(ev.target).serialize());
+    if (ev.target.id === "save") {
+      $.ajax({
+        url: "/food/shopping",
+        method: 'POST',
+        data: $("#grocery-list").serialize()
+      }).then((res) => {
+        console.log('sucessful post');
+      }).catch((err) => {
+        console.error(err);
+      });
+    }
+    if (ev.target.id === "clear") {
+      $(".input-group").remove();
+      $('#purchased').after(`<div class="input-group" style="background: pink;">
+      <span class="input-group-addon">
+        <input type="checkbox">
+      </span>
+      <input type="text" class="form-control food-item" name="food-item" data-row="${i}" value = "">
+      <input type="number" class="form-control food-qty" name="food-qty" placeholder="qty">
+      <button type="button" class="btn btn-default trashbutton">
+        <i class="fa fa-trash-o"></i>
+      </button>
+    </div>`);
+
+    }
+    if (ev.target.id === "purchased") {
+      $.ajax({
+        url: "/food/inventory",
+        method: 'POST',
+        data: $("#grocery-list").serialize()
+      }).then((res) => {
+        console.log('sucessful post');
+      }).catch((err) => {
+        console.error(err);
+      });
+    }
   });
 
 });
