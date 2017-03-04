@@ -56,12 +56,20 @@ module.exports = (knex) => {
       res.redirect("/");
     }
   });
+  const request = require('request');
+
 
   // Recipe button is clicked, places all elements in a str.
   food.post("/recipes", (req, res) => {
     if (req.session.user_id) {
       console.log(req.body);
-      res.status(200);
+      request(`http://food2fork.com/api/search?key=a6d38b7fdc69b588f290a8a5ca84f127&q=${req.body.ingredients[0]}&${req.body.ingredients[1]}&${req.body.ingredients[3]}`,
+        function (error, response, body) {
+          if (!error && response.statusCode == 200) {
+            res.json(response);
+          }
+        });
+
     } else {
       res.redirect("/");
     }

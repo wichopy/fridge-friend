@@ -140,23 +140,28 @@ $(document).ready(() => {
     init();
   });
 
-  $('#get-checked-data').on('click', function (event) {
+  $('#get-ingredients').on('click', function (event) {
     event.preventDefault();
     var checkedItems = [];
-    $("#check-list-box li.active").each(function (idx, li) {
+    $("#ingredient-list li.active").each(function (idx, li) {
       console.log($(li).text());
       checkedItems.push($(li).text());
     });
-    $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
-    console.log(checkedItems);
     $.ajax({
         url: "/food/recipes",
         method: 'POST',
         data: { ingredients: checkedItems }
       })
       .then((results) => {
-        console.log(results);
-        console.log("successful POST of recipes to server.");
+        let output = "";
+        let recipes = JSON.parse(results.body);
+        console.log(recipes.recipes);
+        recipes.recipes.map((recipe_obj) => {
+          output += `<div>
+          <img src="${recipe_obj.image_url}" heigh = "200" weight = "200"> <a href="${recipe_obj.source_url}"> ${recipe_obj.title} </a>
+          </div>`;
+        });
+        $('#display-json').html(output);
       })
       .catch((err) => { console.log(err); });
   });
