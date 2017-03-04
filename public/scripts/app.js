@@ -25,6 +25,15 @@ $(document).ready(() => {
         if(currentLi.text() === "" ){
           // console.log($(this).val());
           currentLi.html(`<span class="state-icon glyphicon glyphicon-unchecked"></span><input type="checkbox" class="hidden"> ${$(".food-item").val()}`);
+            $.ajax({
+              url: "/food/inventory",
+              method: 'POST',
+              data: { 'food-item': $(".food-item").val().trim() }
+              }).then((res) => {
+                console.log('sucessful post');
+              }).catch((err) => {
+                console.error(err);
+              });
           return false;
         }
       });
