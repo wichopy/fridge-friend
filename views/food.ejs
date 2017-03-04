@@ -4,43 +4,42 @@
 <head>
     <title>Your Food Lists</title>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/foods.css" type="text/css" />
     <!-- IF YOU HAVE TOO MANY VERSIONS OF JQUERY INCLUDED, YOU WILL GET ISSUES WITH AJAX! ONLY HAVE ONE!! -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <body>
-    <div class="container-fluid header">
-        <div class="row">
-            <div class="col-2"></div>
-            <div class='col-8'>
-                <h1>Food Lists</h1>
-            </div>
-            <div class='col-2'>
-                <p class='msg-to-user'> Hello there
-                    <%= name %>, hungry? </p>
+
+      <div class="container-fluid header">
+          <div class="row">
+              <div class='col-8'>
+                <img id="logo" src="https://s-media-cache-ak0.pinimg.com/736x/cc/4f/93/cc4f9358912141e893982d4908f87d70.jpg">
+                <h1 id="title">Fridge Friend</h1>
+              </div>
+              <div class="col-4">
                 <form method="POST" action="/session">
                     <input type="hidden" name="_method" value="DELETE">
                     <input id="logout-button" type="submit" value="Logout">
                 </form>
-            </div>
-        </div>
-        <p> Your food lists go here! </p>
-    </div>
-    <div class="container-fluid foods">
-        <div class="row">
+                <p class='msg-to-user'> Hello there <%= name %>, hungry? </p>
+              </div>
+          </div>
+      </div>
+
+     <div class="container-fluid foods">
+        <div class="row lists">
 
             <div class="col-6">
-                <div class='well pre-scrollable'>
+                <div class='list-box well'>
                     <h3>Grocery List </h3>
                     <form id="grocery-list" action="/food/shopping" method="post">
                         <button id="save" type="submit"> Save </button>
@@ -52,7 +51,7 @@
                              </span>
                             <input type="text" class="form-control food-item" name="food-item" placeholder="Feed me food..">
                             <input type="number" class="form-control food-qty" name="food-qty" placeholder="qty">
-                            <span class="fa fa-exclamation"></span>
+
                             <button type="button" class="btn btn-default">
                                 <i class="fa fa-trash-o"></i>
                             </button>
@@ -65,10 +64,10 @@
 
                 </div>
             </div>
-            <div class="col-6">
-                <div class=' well sink pre-scrollable'>
-                    <p> Your Tracked foods list should go here!</p>
-                    <!--https://v4-alpha.getbootstrap.com/components/list-group/-->
+            <div class="list-box col-6">
+                <div class='well sink'>
+                    <h3>Inventory List</h3>
+
                     <ul class="list-group">
                         <li class="list-group-item">Cras justo odio
                             <input data-qty="3" type="number" class="form-control inv-qty" name="inv-qty" placeholder="qty">
@@ -101,6 +100,7 @@
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
