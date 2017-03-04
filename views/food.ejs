@@ -53,23 +53,34 @@
                         </li>-->
                     </ul>
                     <form id="grocery-list" action="/food/shopping" method="post">
-                        <input id="save" type="submit" value="Save">
-                        <input id="clear" type="button" value="Clear">
-                        <input id="purchased" type="button" value="Purchased">
+
                         <div class="input-group">
-                            <!-- <span class="input-group-addon">
-                              <input type="checkbox">
-                              </span> -->
+
                             <input type="text" class="form-control food-item" name="food-item" placeholder="Feed me food..">
                             <input type="number" class="form-control food-qty" name="food-qty" placeholder="qty">
                             <button type="button" class="btn btn-default">
                                 <i class="fa fa-trash-o"></i>
                             </button>
+                            <input id="save" type="submit" value="Save">
+                            <input id="clear" type="button" value="Clear">
+                            <input id="purchased" type="button" value="Purchased">
+
                         </div>
-                        <!-- <button id="save" type="submit"> Save </button>
-                        <button id="clear"> Clear </button>
-                        <button id="purchased"> Purchased</button> -->
                     </form>
+                    <div>
+                        <ul class="list-group checked-list-box">
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                        </ul>
+                    </div>
 
                 </div>
             </div>
@@ -80,6 +91,7 @@
                 <!--https://v4-alpha.getbootstrap.com/components/list-group/-->
                 <div class="list-box col-6">
                     <div class='well sink'>
+
 
                         <h2>Modal Example</h2>
 
@@ -94,6 +106,16 @@
                                 <span class="close">&times;</span>
                                 <p>Some text in the Modal..</p>
                             </div>
+
+                            <ul class="inventory-list-group">
+                                <li class="inventory">
+                                    <input data-qty="3" type="number" class="form-control inv-qty" name="inv-qty" placeholder="qty">
+                                </li>
+                                <li class="inventory"></li>
+
+                            </ul>
+                            <button id="Recipes"> Recipes </button>
+                            <button id="Update"> Update Qtys </button>
 
                         </div>
 
