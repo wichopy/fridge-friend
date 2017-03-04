@@ -29,78 +29,71 @@ module.exports = (knex) => {
   });
 
   food.post("/shopping", (req, res) => {
-   /* 1. WARNING: Single entries from front-end result in a string element, multiple entries result in an array element for key:foodItem
-    * 2. If logged in:
-    * 3. Loop through each item doing the following:
-    * 4. Goes through the below only if there is a food-item/food-qty:
-    * 5. var function appendIng: appends an item to list "ingredients" if it does not exist (via knex query)
-    * 6. var function appendInv: obtains current item's count to itemTotal
-    * 6a. ELSE, creates a new entry, adds userId(userId), ingId(ingIndex), pend(food-qty), and inventory (0).
-    * 7. promise.all (appendIng,appendInv)
-    * 8. Does not complete as intended, as insert commands don't succeed in either row [/tableflip]
-    * 9. Upgrade permission issue??
-    */
+  // returns input req.body as: {"food-item":['a', 'abc'], "foodQty": [1,2]"}
 
+    let curFood = req.body["food-item"];
+    let curQty = req.body["food-qty"];
     let userId = req.session.user_id;
-    let foodItem = req.body["food-item"];
-    let foodQty = req.body["food-qty"];
-    if (userId) {
-      for (let index in foodItem){
-        let curFood = foodItem[index];
-        if (foodItem && foodQty){
-          var appendIng = new Promise(() => {
-            knex.select("*")
-              .from("ingredients")
-              .where({name: curFood})
-              .then((results) => {
-                if (!results[0]){ // checks if there is no results from the search, then it appends to ing
-                  knex.insert({name: curFood}).into("ingredients");
-                }  
-              });
+    let queries = [];
+    if (!userId) {
+      return res.redirect("/");
+    }    
+      if (curFood && curQty) {
+        let appendIng = knex.raw(`INSERT INTO ingredients (name) VALUES (?) ON CONFLICT (name) 
+          DO UPDATE SET name = ingredients.name RETURNING ID`, [curFood])
+          .then((result)=> {
+            console.log(`ingId = ${JSON.stringify(result)}`);
+            return knex.raw(`INSERT INTO inventory ("userId", "ingId","pend","qty") VALUES (${userId},${result.rows[0].id},${curQty},0) ON CONFLICT ("userId", "ingId") 
+              DO UPDATE SET pend = excluded.pend + inventory.pend`);
           });
-          
-          var appendInv = new Promise((resolve,reject) => {
-            knex.select("userId")
-            .from("inventory")
-            .where({ingId: ingIndex})
-            .then ((results) => {            
-              if (let userId in results){
-                let invTotal = 0;
-                knex.select("pend")
-                  .from("inventory")
-                  .where({
-                    ingId: ingIndex,
-                    userId: userId
-                  })
-                  .then ((results) => {
-                    invTotal = results[0] + foodQty[index];
-                  })
-
-                knex('inventory')
-                  .where({
-                    id: userId
-                  }) 
-                  .update({
-                    pend: invTotal
-                  });
-
-              } else {
-                knex("ingredients").insert({
-                  userId: userId,
-                  ingId: ingIndex,
-                  pend: foodQty[index],
-                  qty: 0
-                }); // knex insert
-              } // else statement
-            }); // .then
-          }); // Promise, end.
-        Promise.all([appendIng, appendInv]).then().catch();
-        } // if item+qty is food, ends.
-      } // for loop cycling each submitted item
-    } else {
-      res.redirect("/");
-    }
+        queries.push(appendIng);  
+      } // if item+qty is food, ends.
+    // } // for loop cycling each submitted item
+    
+    Promise.all(queries).then(() => {
+      res.status(200).send();
+    }).catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
   });
+
+        // let appendInv = new Promise((resolve,reject) => {
+        //   knex.select("userId")
+        //   .from("inventory")
+        //   .where({ingId: ingIndex})
+        //   .then ((results) => {            
+        //     if (userId in results){
+        //       let invTotal = 0;
+        //       knex.select("pend")
+        //         .from("inventory")
+        //         .where({
+        //           ingId: ingIndex,
+        //           userId: userId
+        //         })
+        //         .then ((results) => {
+        //           invTotal = results[0] + foodQty[index];
+        //         })
+
+        //       knex('inventory')
+        //         .where({
+        //           id: userId
+        //         }) 
+        //         .update({
+        //           pend: invTotal
+        //         });
+
+        //     } else {
+        //       knex("ingredients").insert({
+        //         userId: userId,
+        //         ingId: ingIndex,
+        //         pend: foodQty[index],
+        //         qty: 0
+        //       }); // knex insert
+        //     } // else statement
+        //   }); // .then
+        // }); // Promise, end.
+
 
   // Purchase button is clicked: removes from shopping list and appends under inventory list
   food.post("/inventory", (req, res) => {
@@ -138,7 +131,7 @@ module.exports = (knex) => {
   // Recipe button is clicked, places all elements in a str.
   food.post("/recipes", (req, res) => {
     if (req.session.user_id) {
-
+    // ("Optionally") find IDs of food-items s
     } else {
       res.redirect("/");
     }
