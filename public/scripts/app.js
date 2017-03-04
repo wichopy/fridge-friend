@@ -27,19 +27,7 @@ $(document).ready(() => {
           currentLi.html(`<span class="state-icon glyphicon glyphicon-unchecked"></span><input type="checkbox" class="hidden"> ${$(".food-item").val()}`);
           return false;
         }
-        // .html(`<span class="state-icon glyphicon glyphicon-unchecked"></span><input type="checkbox" class="hidden"> ${$(".food-item").val()}`)
-
-
       });
-      // $.ajax({
-      //   url: "/food/shopping",
-      //   method: 'POST',
-      //   data: $("#grocery-list").serialize()
-      // }).then((res) => {
-      //   console.log('sucessful post');
-      // }).catch((err) => {
-      //   console.error(err);
-      // });
     }
     if (ev.target.id === "clear") {
       $(".input-group").remove();
@@ -53,25 +41,21 @@ $(document).ready(() => {
         <i class="fa fa-trash-o"></i>
       </button>
     </div>`);
-
     }
     if (ev.target.id === "purchased") {
-      event.preventDefault();
+      ev.preventDefault();
       var checkedItems = [];
       console.log($(".checked-list-box li.active"))
       $(".checked-list-box li.active").each(function(idx, li) {
-
-          checkedItems.push($(li).text());
-      });
-      console.log(checkedItems);
-      $.ajax({
+         $.ajax({
         url: "/food/inventory",
         method: 'POST',
-        data: { 'food-item': checkedItems }
-      }).then((res) => {
-        console.log('sucessful post');
-      }).catch((err) => {
-        console.error(err);
+        data: { 'food-item': $(li).text().trim() }
+        }).then((res) => {
+          console.log('sucessful post');
+        }).catch((err) => {
+          console.error(err);
+        });
       });
     }
   });
