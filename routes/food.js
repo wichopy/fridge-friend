@@ -132,9 +132,18 @@ module.exports = (knex) => {
 
   // Recipe button is clicked, places all elements in a str.
   food.post("/recipes", (req, res) => {
+    console.log(req.body);
     if (req.session.user_id) {
       console.log(req.body);
-      request(`http://food2fork.com/api/search?key=a6d38b7fdc69b588f290a8a5ca84f127&q=${req.body.ingredients[0]}&${req.body.ingredients[1]}&${req.body.ingredients[3]}`,
+      let url = `http://food2fork.com/api/search?key=a6d38b7fdc69b588f290a8a5ca84f127&q=`
+      for (let i = 0; i < req.body.ingredients.length; i++) {
+        url += req.body.ingredients[i];
+        if (i !== req.body.ingredients.length - 1) {
+          url += "&";
+        }
+      }
+      console.log(url);
+      request(url,
         function (error, response, body) {
           if (!error && response.statusCode == 200) {
 
