@@ -1,29 +1,5 @@
 $(document).ready(() => {
-  // Get the modal
-  var modal = document.getElementById('myModal');
 
-  // Get the button that opens the modal
-  var btn = document.getElementById("myBtn");
-
-  // Get the <span> element that closes the modal
-  var span = document.getElementsByClassName("close")[0];
-
-  // When the user clicks the button, open the modal 
-  btn.onclick = function () {
-    modal.style.display = "block";
-  }
-
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = function () {
-    modal.style.display = "none";
-  }
-
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
   $(".login").hide()
   $("#already").on("click", function () {
     $("#already").hide();
@@ -79,11 +55,13 @@ $(document).ready(() => {
       ev.preventDefault();
       var checkedItems = [];
       console.log($(".checked-list-box li.active .shopping"))
-      $(".checked-list-box li.active").each(function (idx, li) {
+
+      $(".checked-list-box.shopping li.active").each(function (idx, li) {
         $.ajax({
           url: "/food/inventory",
           method: 'POST',
           data: { 'food-item': $(li).text().trim() }
+
         }).then((res) => {
           console.log('sucessful post');
         }).catch((err) => {
@@ -93,13 +71,81 @@ $(document).ready(() => {
     }
   });
   // $(function () {
-  $('.list-group.checked-list-box .list-group-item').each(function () {
+  $('.list-group.checked-list-box.shopping .list-group-item').each(function () {
 
     // Settings
     var $widget = $(this),
       $checkbox = $('<input type="checkbox" class="hidden" />'),
       color = ($widget.data('color') ? $widget.data('color') : "primary"),
       style = ($widget.data('style') == "button" ? "btn-" : "list-group-item-"),
+      settings = {
+        on: {
+          icon: 'glyphicon glyphicon-check'
+        },
+        off: {
+          icon: 'glyphicon glyphicon-unchecked'
+        }
+      };
+
+    $widget.css('cursor', 'pointer')
+    $widget.append($checkbox);
+
+    // Event Handlers
+    $widget.on('click', function () {
+      $checkbox.prop('checked', !$checkbox.is(':checked'));
+      $checkbox.triggerHandler('change');
+      updateDisplay();
+    });
+    $checkbox.on('change', function () {
+      updateDisplay();
+    });
+    // Actions
+    function updateDisplay() {
+      var isChecked = $checkbox.is(':checked');
+
+      // Set the button's state
+      $widget.data('state', (isChecked) ? "on" : "off");
+
+      // Set the button's icon
+      $widget.find('.state-icon')
+        .removeClass()
+        .addClass('state-icon ' + settings[$widget.data('state')].icon);
+
+      // Update the button's color
+      if (isChecked) {
+        $widget.addClass(style + color + ' active');
+      } else {
+        $widget.removeClass(style + color + ' active');
+      }
+    }
+
+    // Initialization
+    function init() {
+
+      if ($widget.data('checked') == true) {
+        $checkbox.prop('checked', !$checkbox.is(':checked'));
+      }
+
+      updateDisplay();
+
+      // Inject the icon if applicable
+      if ($widget.find('.state-icon').length == 0) {
+        $widget.prepend('<span class="state-icon ' + settings[$widget.data('state')].icon + '"></span>');
+      }
+    }
+    init();
+  });
+
+
+  // });
+  ///////////// inventory
+  $('.list-group.checked-list-box.inventory .list-group-item').each(function () {
+    console.log(this);
+    // Settings
+    var $widget = $(this),
+      $checkbox = $('<input type="checkbox" class="hidden" />'),
+      color = ($widget.data('color') ? $widget.data('color') : "primary"),
+      style = ($widget.data('style') == "button" ? "btn-" : "inventory-list-group-item-"),
       settings = {
         on: {
           icon: 'glyphicon glyphicon-check'
@@ -160,43 +206,15 @@ $(document).ready(() => {
     init();
   });
 
-  $('#get-checked-data').on('click', function (event) {
-    event.preventDefault();
-    var checkedItems = {},
-      counter = 0;
-    $("#check-list-box li.active").each(function (idx, li) {
-      checkedItems[counter] = $(li).text();
-      counter++;
-    });
-    $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
-    $('#get-ingredients').on('click', function (event) {
-      event.preventDefault();
-      var checkedItems = [];
-      $("#ingredient-list li.active").each(function (idx, li) {
-        console.log($(li).text());
-        checkedItems.push($(li).text());
-      });
-      $.ajax({
-          url: "/food/recipes",
-          method: 'POST',
-          data: { ingredients: checkedItems }
-        })
-        .then((results) => {
-          let output = "";
-          let recipes = JSON.parse(results.body);
-          console.log(recipes.recipes);
-          recipes.recipes.map((recipe_obj) => {
-            output += `<div>
-          <img src="${recipe_obj.image_url}" heigh = "200" weight = "200"> <a href="${recipe_obj.source_url}"> ${recipe_obj.title} </a>
-          </div>`;
-          });
-          $('#display-json').html(output);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    });
-  });
+  // $('#Recipes').on('click', function (event) {
+  //   event.preventDefault();
+  //   var checkedItems = {},
+  //     counter = 0;
+  //   $("#check-list-box li.active").each(function (idx, li) {
+  //     checkedItems[counter] = $(li).text();
+  //     counter++;
+  //   });
+  //   $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
   // });
 
 });
