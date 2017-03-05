@@ -10,14 +10,17 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/foods.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/modal.css" type="text/css" />
     <!-- IF YOU HAVE TOO MANY VERSIONS OF JQUERY INCLUDED, YOU WILL GET ISSUES WITH AJAX! ONLY HAVE ONE!! -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+
 </head>
 
 <body>
+
     <div class="container-fluid header">
         <div class="row">
             <div class='col-8'>
@@ -41,21 +44,9 @@
             <div class="col-6">
                 <div class='list-box well'>
                     <h3>Grocery List </h3>
-                    <ul id="check-list-box" class="list-group checked-list-box shopping-list">
-                        <!--<li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item" data-color="success">eggs
-                        </li>
-                        <li class="list-group-item" data-color="info">bacon
-                        </li>
-                        <li class="list-group-item" data-color="warning">toast
-                        </li>
-                        <li class="list-group-item" data-color="danger">butter
-                        </li>-->
-                    </ul>
                     <form id="grocery-list" action="/food/shopping" method="post">
 
                         <div class="input-group">
-
                             <input type="text" class="form-control food-item" name="food-item" placeholder="Feed me food..">
                             <input type="number" class="form-control food-qty" name="food-qty" placeholder="qty">
                             <button type="button" class="btn btn-default">
@@ -64,11 +55,10 @@
                             <input id="save" type="submit" value="Save">
                             <input id="clear" type="button" value="Clear">
                             <input id="purchased" type="button" value="Purchased">
-
                         </div>
                     </form>
                     <div>
-                        <ul class="list-group checked-list-box">
+                        <ul class="list-group checked-list-box shopping">
                             <li class="list-group-item"></li>
                             <li class="list-group-item"></li>
                             <li class="list-group-item"></li>
@@ -84,70 +74,48 @@
 
                 </div>
             </div>
-            <div class="col-6">
-                <div class=' well sink pre-scrollable'>
-                </div>
-                <!-- Implementing bootstrap check boxes from : http://bootsnipp.com/snippets/featured/checked-list-group-->
-                <!--https://v4-alpha.getbootstrap.com/components/list-group/-->
-                <div class="list-box col-6">
-                    <div class='well sink'>
+            <div class="list-box col-6">
+                <div class='well sink'>
+                    <h3>Inventory List</h3>
+                    <ul class="list-group checked-list-box inventory">
+                        <li class="list-group-item"></li>
+                        <li class="list-group-item"></li>
+                        <li class="list-group-item"></li>
+                        <li class="list-group-item"></li>
+                        <li class="list-group-item"></li>
+                        <li class="list-group-item"></li>
+                        <li class="list-group-item"></li>
+                        <li class="list-group-item"></li>
+                        <li class="list-group-item"></li>
+                        <li class="list-group-item"></li>
+                    </ul>
+                    <ul class="inventory-list-group">
+                        <li class="inventory">
+                            <input data-qty="3" type="number" class="form-control inv-qty" name="inv-qty" placeholder="qty">
+                        </li>
+                        <li class="inventory"></li>
 
+                    </ul>
+                    <button id="Recipes"> Recipes </button>
+                    <button id="Update"> Update Qtys </button>
 
-                        <h2>Modal Example</h2>
-
-                        <!-- Trigger/Open The Modal -->
-                        <button id="myBtn">Open Modal</button>
-
-                        <!-- The Modal -->
-                        <div id="myModal" class="modal">
-
-                            <!-- Modal content -->
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <p>Some text in the Modal..</p>
-                            </div>
-
-                            <ul class="inventory-list-group">
-                                <li class="inventory">
-                                    <input data-qty="3" type="number" class="form-control inv-qty" name="inv-qty" placeholder="qty">
-                                </li>
-                                <li class="inventory"></li>
-
-                            </ul>
-                            <button id="Recipes"> Recipes </button>
-                            <button id="Update"> Update Qtys </button>
-
-                        </div>
-
-                        <pre id="display-json"></pre>
-                        <!--<button id="Recipes"> Recipes </button>-->
-                        <button class="btn btn-primary col-xs-12" id="get-ingredients">Recipes</button>
-                        <button id="Update"> Update Qtys </button>
-                        <div class="well" style="max-height: 300px;overflow: auto;">
-                            <ul id="ingredient-list" class="list-group checked-list-box">
-                                <li class="list-group-item">hash browns.</li>
-                                <li class="list-group-item" data-color="success">eggs</li>
-                                <li class="list-group-item" data-color="info">bacon</li>
-                                <li class="list-group-item" data-color="warning">toast</li>
-                                <li class="list-group-item" data-color="danger">butter</li>
-                            </ul>
-                            <br />
-                            <ul class="list-group">
-                                <li class="list-group-item">Cras justo odio
-                                    <input data-qty="3" type="number" class="form-control inv-qty" name="inv-qty" placeholder="qty">
-                                </li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                            </ul>
-                            <button id="Recipes"> Recipes </button>
-                            <button id="Update"> Update Qtys </button>
-
-                        </div>
-                    </div>
                 </div>
             </div>
-
         </div>
+    </div>
+    <h2>Modal Example</h2>
 
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn">Open Modal</button>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Some text in the Modal..</p>
+        </div>
 </body>
 
 </html>
