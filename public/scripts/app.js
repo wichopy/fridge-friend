@@ -8,6 +8,12 @@ $(document).ready(() => {
 
   });
   // $(".list-group-item").hide();
+  const ingRender = ((items) => {
+    for (let ingredient of items) {
+      let $ingredient = $("<li></li>").addClass("list-group-item").text(ingredient);
+      $('.list-group.checked-list-box').append($ingredient);
+    }
+  });
 
   $("#grocery-list").on("click", ".trashbutton", function (ev) {
     console.log(ev.target);
@@ -54,6 +60,7 @@ $(document).ready(() => {
     if (ev.target.id === "purchased") {
       ev.preventDefault();
       var checkedItems = [];
+      //<<<<<<< HEAD
       console.log($(".checked-list-box li.active .shopping"))
 
       $(".checked-list-box.shopping li.active").each(function (idx, li) {
@@ -61,7 +68,6 @@ $(document).ready(() => {
           url: "/food/inventory",
           method: 'POST',
           data: { 'food-item': $(li).text().trim() }
-
         }).then((res) => {
           console.log('sucessful post');
         }).catch((err) => {
@@ -71,7 +77,7 @@ $(document).ready(() => {
     }
   });
   // $(function () {
-  $('.list-group.checked-list-box.shopping .list-group-item').each(function () {
+  $('.list-group.checked-list-box .list-group-item').each(function () {
 
     // Settings
     var $widget = $(this),
@@ -86,6 +92,21 @@ $(document).ready(() => {
           icon: 'glyphicon glyphicon-unchecked'
         }
       };
+
+    $widget.css('cursor', 'pointer')
+    $widget.append($checkbox);
+
+    // Event Handlers
+    $widget.on('click', function () {
+      $checkbox.prop('checked', !$checkbox.is(':checked'));
+      $checkbox.triggerHandler('change');
+      updateDisplay();
+    });
+    $checkbox.on('change', function () {
+      updateDisplay();
+    });
+
+    //>>>>>>> 344d19f1ccce82ad9d6afd0e62232f3ea10e1273
 
     $widget.css('cursor', 'pointer')
     $widget.append($checkbox);
@@ -167,6 +188,7 @@ $(document).ready(() => {
     $checkbox.on('change', function () {
       updateDisplay();
     });
+    //<<<<<<< HEAD
 
 
     // Actions
@@ -205,6 +227,9 @@ $(document).ready(() => {
     }
     init();
   });
+  //=======
+  // });
+  //>>>>>>> 344d19f1ccce82ad9d6afd0e62232f3ea10e1273
 
   // $('#Recipes').on('click', function (event) {
   //   event.preventDefault();
