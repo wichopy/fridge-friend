@@ -44,7 +44,7 @@ module.exports = (knex, Mailgun) => {
     
     Promise.all(queries).then(() => {
       res.status(200).send();
-    }).catch((error) => {
+     }).catch((error) => {
       console.log(error);
       res.sendStatus(500);
     });
