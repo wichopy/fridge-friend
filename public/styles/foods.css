@@ -47,8 +47,9 @@ html, body, .foods{
 body {
   margin: 0;
   background-image: url("http://lamaisonaz.com/blog/wp-content/uploads/2015/02/iStock_000041811192_Large.jpg");
-  background-size: 1440px 800px;
+  background-size: 1740px 900px;
   background-repeat: no-repeat;
-  display: compact; }
+  display: compact;
+}
 
 /*# sourceMappingURL=foods.css.map */
