@@ -31,13 +31,13 @@ module.exports = (knex, Mailgun) => {
     if (!userId) {
       return res.redirect("/");
     }    
-      if (curFood && curQty) {
+      if (curFood) {
         let appendIng = knex.raw(`INSERT INTO ingredients (name) VALUES (?) ON CONFLICT (name) 
           DO UPDATE SET name = ingredients.name RETURNING ID`, [curFood])
           .then((result)=> {
             
-            return knex.raw(`INSERT INTO inventory ("userId", "ingId","pend","qty") VALUES (${userId},${result.rows[0].id},${curQty},0) ON CONFLICT ("userId", "ingId") 
-              DO UPDATE SET pend = excluded.pend + inventory.pend`);
+            return knex.raw(`INSERT INTO inventory ("userId", "ingId","pend","qty") VALUES (${userId},${result.rows[0].id},0,0) ON CONFLICT ("userId", "ingId") 
+              DO NOTHING`);
           });
         queries.push(appendIng);  
       } 

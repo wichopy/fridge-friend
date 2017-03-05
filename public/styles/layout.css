@@ -106,3 +106,15 @@ a {
   text-align: center;
   font-size: 0.9rem;
 }
+
+.input-group {
+  margin: .5em;
+}
+
+.list-group-item {
+  margin: .5em;
+}
+
+.well {
+  background-color: lightgrey;
+}
