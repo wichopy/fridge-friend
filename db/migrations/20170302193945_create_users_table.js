@@ -20,8 +20,6 @@ exports.up = function(knex, Promise) {
   	table.integer('pend');
   	table.integer('qty');
   })
-  .then(() => {
-  });
 };
 
 exports.down = function(knex, Promise) {
@@ -32,6 +30,4 @@ exports.down = function(knex, Promise) {
   })
   .dropTable('ingredients')
   .dropTable('inventory')
-  .then(() => {
-  });
 };

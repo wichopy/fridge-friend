@@ -19,21 +19,21 @@ $(document).ready(() => {
     // console.log($(ev.target).serialize());
     if (ev.target.id === "save") {
       ev.preventDefault();
-      $(".list-group-item").each( function () {
+      $(".list-group-item").each(function () {
         var currentLi = $(this);
         // console.log(currentLi.text());
-        if(currentLi.text() === "" ){
+        if (currentLi.text() === "") {
           // console.log($(this).val());
           currentLi.html(`<span class="state-icon glyphicon glyphicon-unchecked"></span><input type="checkbox" class="hidden"> ${$(".food-item").val()}`);
-            $.ajax({
-              url: "/food/shopping",
-              method: 'POST',
-              data: { 'food-item': $(".food-item").val().trim() }
-              }).then((res) => {
-                console.log('sucessful post');
-              }).catch((err) => {
-                console.error(err);
-              });
+          $.ajax({
+            url: "/food/shopping",
+            method: 'POST',
+            data: { 'food-item': $(".food-item").val().trim() }
+          }).then((res) => {
+            console.log('sucessful post');
+          }).catch((err) => {
+            console.error(err);
+          });
           return false;
         }
       });
@@ -60,6 +60,13 @@ $(document).ready(() => {
         url: "/food/inventory",
         method: 'POST',
         data: { 'food-item': $(li).text().trim() }
+      console.log($(".checked-list-box li.active .shopping"))
+
+      $(".checked-list-box.shopping li.active").each(function (idx, li) {
+        $.ajax({
+          url: "/food/inventory",
+          method: 'POST',
+          data: { 'food-item': $(li).text().trim() }
         }).then((res) => {
           console.log('sucessful post');
         }).catch((err) => {
@@ -68,7 +75,7 @@ $(document).ready(() => {
       });
     }
   });
-  // $(function () {
+
     $('.list-group.checked-list-box.shopping .list-group-item').each(function () {
 
         // Settings
@@ -98,53 +105,100 @@ $(document).ready(() => {
             updateDisplay();
         });
 
+  $('.list-group.checked-list-box.shopping .list-group-item').each(function () {
 
-        // Actions
-        function updateDisplay() {
-            var isChecked = $checkbox.is(':checked');
-
-            // Set the button's state
-            $widget.data('state', (isChecked) ? "on" : "off");
-
-            // Set the button's icon
-            $widget.find('.state-icon')
-                .removeClass()
-                .addClass('state-icon ' + settings[$widget.data('state')].icon);
-
-            // Update the button's color
-            if (isChecked) {
-                $widget.addClass(style + color + ' active');
-            } else {
-                $widget.removeClass(style + color + ' active');
-            }
+    // Settings
+    var $widget = $(this),
+      $checkbox = $('<input type="checkbox" class="hidden" />'),
+      color = ($widget.data('color') ? $widget.data('color') : "primary"),
+      style = ($widget.data('style') == "button" ? "btn-" : "list-group-item-"),
+      settings = {
+        on: {
+          icon: 'glyphicon glyphicon-check'
+        },
+        off: {
+          icon: 'glyphicon glyphicon-unchecked'
         }
+      };
 
-        // Initialization
-        function init() {
+    $widget.css('cursor', 'pointer')
+    $widget.append($checkbox);
 
-            if ($widget.data('checked') == true) {
-                $checkbox.prop('checked', !$checkbox.is(':checked'));
-            }
+    // Event Handlers
+    $widget.on('click', function () {
+      $checkbox.prop('checked', !$checkbox.is(':checked'));
+      $checkbox.triggerHandler('change');
+      updateDisplay();
+    });
+    $checkbox.on('change', function () {
+      updateDisplay();
+    });
+    // Actions
+    function updateDisplay() {
+      var isChecked = $checkbox.is(':checked');
 
-            updateDisplay();
+      // Set the button's state
+      $widget.data('state', (isChecked) ? "on" : "off");
 
-            // Inject the icon if applicable
-            if ($widget.find('.state-icon').length == 0) {
-                $widget.prepend('<span class="state-icon ' + settings[$widget.data('state')].icon + '"></span>');
-            }
+      // Set the button's icon
+      $widget.find('.state-icon')
+        .removeClass()
+        .addClass('state-icon ' + settings[$widget.data('state')].icon);
+
+      // Update the button's color
+      if (isChecked) {
+        $widget.addClass(style + color + ' active');
+      } else {
+        $widget.removeClass(style + color + ' active');
+      }
+    }
+
+    // Initialization
+    function init() {
+
+      if ($widget.data('checked') == true) {
+        $checkbox.prop('checked', !$checkbox.is(':checked'));
+      }
+
+      updateDisplay();
+
+      // Inject the icon if applicable
+      if ($widget.find('.state-icon').length == 0) {
+        $widget.prepend('<span class="state-icon ' + settings[$widget.data('state')].icon + '"></span>');
+      }
+    }
+    init();
+  });
+
+  $('.list-group.checked-list-box.inventory .list-group-item').each(function () {
+    console.log(this);
+    // Settings
+    var $widget = $(this),
+      $checkbox = $('<input type="checkbox" class="hidden" />'),
+      color = ($widget.data('color') ? $widget.data('color') : "primary"),
+      style = ($widget.data('style') == "button" ? "btn-" : "inventory-list-group-item-"),
+      settings = {
+        on: {
+          icon: 'glyphicon glyphicon-check'
+        },
+        off: {
+          icon: 'glyphicon glyphicon-unchecked'
         }
-        init();
-    });
+      };
 
-    $('#get-checked-data').on('click', function(event) {
-        event.preventDefault();
-        var checkedItems = {}, counter = 0;
-        $("#check-list-box li.active").each(function(idx, li) {
-            checkedItems[counter] = $(li).text();
-            counter++;
-        });
-        $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
+    $widget.css('cursor', 'pointer')
+    $widget.append($checkbox);
+
+    // Event Handlers
+    $widget.on('click', function () {
+      $checkbox.prop('checked', !$checkbox.is(':checked'));
+      $checkbox.triggerHandler('change');
+      updateDisplay();
     });
+    $checkbox.on('change', function () {
+      updateDisplay();
+    });
+<<<<<<< HEAD
 ///////////// inventory
  $('.list-group.checked-list-box.inventory .list-group-item').each(function () {
          console.log(this);
@@ -222,5 +276,43 @@ $(document).ready(() => {
         });
         $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
     });
+
+    // Actions
+    function updateDisplay() {
+      var isChecked = $checkbox.is(':checked');
+
+      // Set the button's state
+      $widget.data('state', (isChecked) ? "on" : "off");
+
+      // Set the button's icon
+      $widget.find('.state-icon')
+        .removeClass()
+        .addClass('state-icon ' + settings[$widget.data('state')].icon);
+
+      // Update the button's color
+      if (isChecked) {
+        $widget.addClass(style + color + ' active');
+      } else {
+        $widget.removeClass(style + color + ' active');
+      }
+    }
+
+    // Initialization
+    function init() {
+
+      if ($widget.data('checked') == true) {
+        $checkbox.prop('checked', !$checkbox.is(':checked'));
+      }
+
+      updateDisplay();
+
+      // Inject the icon if applicable
+      if ($widget.find('.state-icon').length == 0) {
+        $widget.prepend('<span class="state-icon ' + settings[$widget.data('state')].icon + '"></span>');
+      }
+    }
+    init();
+  });
+ß
 
 });
