@@ -4,7 +4,9 @@ const express = require('express');
 const food = express.Router();
 
 module.exports = (knex, Mailgun) => {
+
   food.get("/", (req, res) => {
+    console.log(req.body)
     if (req.session.user_id) {
       knex
         .select("*")
@@ -36,7 +38,7 @@ module.exports = (knex, Mailgun) => {
           DO UPDATE SET name = ingredients.name RETURNING ID`, [curFood])
         .then((result) => {
 
-          return knex.raw(`INSERT INTO inventory ("userId", "ingId","pend","qty") VALUES (${userId},${result.rows[0].id},0,0) ON CONFLICT ("userId", "ingId") 
+          return knex.raw(`INSERT INTO inventory ("userId", "ingId","pend","qty") VALUES (${userId},${result.rows[0].id},1,0) ON CONFLICT ("userId", "ingId") 
               DO NOTHING`);
         });
       queries.push(appendIng);
@@ -260,8 +262,8 @@ module.exports = (knex, Mailgun) => {
       .from("inventory")
       .join('ingredients', 'ingId', 'ingredients.id')
       .where({
-        id: userId,
-        pend: 1
+        "userId": userId,
+        qty: 0
       })
       .then((result) => {
         let ingList = [];
@@ -287,7 +289,7 @@ module.exports = (knex, Mailgun) => {
       .from("inventory")
       .join('ingredients', 'ingId', 'ingredients.id')
       .where({
-        id: userId,
+        'userId': userId,
         qty: 1
       })
       .then((result) => {
@@ -306,7 +308,7 @@ module.exports = (knex, Mailgun) => {
 
   // Recipe button is clicked, places all elements in a str.
   food.post("/recipes", (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     if (req.session.user_id) {
       console.log(req.body);
       let url = `http://food2fork.com/api/search?key=a6d38b7fdc69b588f290a8a5ca84f127&q=`
@@ -322,13 +324,13 @@ module.exports = (knex, Mailgun) => {
           if (!error && response.statusCode == 200) {
 
             res.json(response);
+            return true;
           }
         });
       // ("Optionally") find IDs of food-items s
     } else {
       res.redirect("/");
     }
-    res.status(200).send();
   });
   return food;
 }

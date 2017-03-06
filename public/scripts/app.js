@@ -61,7 +61,7 @@ $(document).ready(() => {
       ev.preventDefault();
       var checkedItems = [];
       //<<<<<<< HEAD
-      console.log($(".checked-list-box li.active .shopping"))
+      // console.log($(".checked-list-box li.active .shopping"))
 
       $(".checked-list-box.shopping li.active").each(function (idx, li) {
         $.ajax({
@@ -77,13 +77,13 @@ $(document).ready(() => {
     }
   });
   // $(function () {
-  $('.list-group.checked-list-box .list-group-item').each(function () {
-
+  $('.list-group.checked-list-box.shopping .list-group-item').each(function () {
+    // console.log(this);
     // Settings
     var $widget = $(this),
       $checkbox = $('<input type="checkbox" class="hidden" />'),
       color = ($widget.data('color') ? $widget.data('color') : "primary"),
-      style = ($widget.data('style') == "button" ? "btn-" : "list-group-item-"),
+      style = ($widget.data('style') == "button" ? "btn-" : "inventory-list-group-item-"),
       settings = {
         on: {
           icon: 'glyphicon glyphicon-check'
@@ -105,21 +105,9 @@ $(document).ready(() => {
     $checkbox.on('change', function () {
       updateDisplay();
     });
+    //<<<<<<< HEAD
 
-    //>>>>>>> 344d19f1ccce82ad9d6afd0e62232f3ea10e1273
 
-    $widget.css('cursor', 'pointer')
-    $widget.append($checkbox);
-
-    // Event Handlers
-    $widget.on('click', function () {
-      $checkbox.prop('checked', !$checkbox.is(':checked'));
-      $checkbox.triggerHandler('change');
-      updateDisplay();
-    });
-    $checkbox.on('change', function () {
-      updateDisplay();
-    });
     // Actions
     function updateDisplay() {
       var isChecked = $checkbox.is(':checked');
@@ -161,7 +149,7 @@ $(document).ready(() => {
   // });
   ///////////// inventory
   $('.list-group.checked-list-box.inventory .list-group-item').each(function () {
-    console.log(this);
+    // console.log(this);
     // Settings
     var $widget = $(this),
       $checkbox = $('<input type="checkbox" class="hidden" />'),
