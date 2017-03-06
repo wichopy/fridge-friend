@@ -30,7 +30,7 @@ $(() => {
   // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
 
-  // When the user clicks the button, open the modal 
+  // When the user clicks the button, open the modal
   btn.onclick = function () {
     modal.style.display = "block";
   }
@@ -76,14 +76,16 @@ $(() => {
           recipes.recipes = shuffle(recipes.recipes);
           recipes.recipes.map((recipe_obj) => {
             output += `<div>
-                <img src="${recipe_obj.image_url}" heigh = "200" weight = "200"> <a href="${recipe_obj.source_url}" target="_blank"> ${recipe_obj.title} </a>
+                <img class="result" src="${recipe_obj.image_url}" height = "200" weight = "200"> <a href="${recipe_obj.source_url}" target="_blank"> ${recipe_obj.title} </a>
                 </div>`;
           });
           setTimeout(function () {
             $('#display-json').html(output)
 
           }, 10000);
+
         });
+
     })
     .catch((err) => {
       console.log(err);
