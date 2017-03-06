@@ -30,7 +30,7 @@ $(() => {
   // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
 
-  // When the user clicks the button, open the modal 
+  // When the user clicks the button, open the modal
   btn.onclick = function () {
     modal.style.display = "block";
   }
@@ -50,43 +50,86 @@ $(() => {
   }
 
   $('#Recipes').on('click', function (event) {
-    event.preventDefault();
-    console.log(event.target);
-    var checkedItems = [];
-    modal.style.display = "block";
-    console.log($(".check-list-box.inventory li.active"));
-    $(".checked-list-box.inventory li.active").each(function (idx, li) {
-      // console.log($(this).text());
-      console.log(li);
-      console.log(idx);
-      checkedItems.push($(li).text());
-      console.log($(li).text());
-      // counter++;
-    });
-    console.log(checkedItems);
-    $.ajax({
-        url: "/food/recipes",
-        method: 'POST',
-        data: { ingredients: checkedItems }
-      })
-      .then((results) => {
-        let output = "";
-        let recipes = JSON.parse(results.body);
-        console.log(recipes.recipes);
-        recipes.recipes = shuffle(recipes.recipes);
-        recipes.recipes.map((recipe_obj) => {
-          output += `<div>
-                <img src="${recipe_obj.image_url}" heigh = "200" weight = "200"> <a href="${recipe_obj.source_url}" target="_blank"> ${recipe_obj.title} </a>
-                </div>`;
-        });
-        setTimeout(function () {
-          $('#display-json').html(output)
 
-        }, 10000);
-      })
-      .catch((err) => {
-        console.log(err);
+      //     event.preventDefault();
+      //     console.log(event.target);
+      //     var checkedItems = [];
+      //     modal.style.display = "block";
+      //     console.log($(".check-list-box.inventory li.active"));
+      //     $(".checked-list-box.inventory li.active").each(function (idx, li) {
+      //       // console.log($(this).text());
+      //       console.log(li);
+      //       console.log(idx);
+      //       checkedItems.push($(li).text());
+      //       console.log($(li).text());
+      //       // counter++;
+      //     });
+      //     console.log(checkedItems);
+      //     $.ajax({
+      //         url: "/food/recipes",
+      //         method: 'POST',
+      //         data: { ingredients: checkedItems }
+      //       })
+      //       .then((results) => {
+      //         let output = "";
+      //         let recipes = JSON.parse(results.body);
+      //         console.log(recipes.recipes);
+      //         recipes.recipes = shuffle(recipes.recipes);
+      //         recipes.recipes.map((recipe_obj) => {
+      //           output += `<div>
+      //                 <img src="${recipe_obj.image_url}" heigh = "200" weight = "200"> <a href="${recipe_obj.source_url}" target="_blank"> ${recipe_obj.title} </a>
+      //                 </div>`;
+      //         });
+      //         setTimeout(function () {
+      //           $('#display-json').html(output)
+
+      //         }, 10000);
+      //       })
+      //       .catch((err) => {
+      //         console.log(err);
+      //       });
+      //   })
+
+      // });
+      // =======
+      event.preventDefault();
+      console.log(event.target);
+      var checkedItems = [];
+      modal.style.display = "block";
+      console.log($(".check-list-box.inventory li.active"));
+      $(".checked-list-box.inventory li.active").each(function (idx, li) {
+        // console.log($(this).text());
+        console.log(li);
+        console.log(idx);
+        checkedItems.push($(li).text());
+        console.log($(li).text());
+        // counter++;
       });
-  })
+      console.log(checkedItems);
+      $.ajax({
+          url: "/food/recipes",
+          method: 'POST',
+          data: { ingredients: checkedItems }
+        })
+        .then((results) => {
+          let output = "";
+          let recipes = JSON.parse(results.body);
+          console.log(recipes.recipes);
+          recipes.recipes = shuffle(recipes.recipes);
+          recipes.recipes.map((recipe_obj) => {
+            output += `<div>
+                <img class="result" src="${recipe_obj.image_url}" height = "200" weight = "200"> <a href="${recipe_obj.source_url}" target="_blank"> ${recipe_obj.title} </a>
+                </div>`;
+          });
+          setTimeout(function () {
+            $('#display-json').html(output)
 
+          }, 10000);
+
+        });
+
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
