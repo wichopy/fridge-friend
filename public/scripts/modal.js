@@ -124,12 +124,11 @@ $(() => {
           setTimeout(function () {
             $('#display-json').html(output)
 
-          }, 10000);
-
-        });
-
-    })
-    .catch((err) => {
+          }, 5000);
+        }) .catch((err) => {
       console.log(err);
     });
+
+    })
+
 });

@@ -34,11 +34,11 @@ module.exports = (knex, Mailgun) => {
       return res.redirect("/");
     }
     if (curFood) {
-      let appendIng = knex.raw(`INSERT INTO ingredients (name) VALUES (?) ON CONFLICT (name) 
+      let appendIng = knex.raw(`INSERT INTO ingredients (name) VALUES (?) ON CONFLICT (name)
           DO UPDATE SET name = ingredients.name RETURNING ID`, [curFood])
         .then((result) => {
 
-          return knex.raw(`INSERT INTO inventory ("userId", "ingId","pend","qty") VALUES (${userId},${result.rows[0].id},1,0) ON CONFLICT ("userId", "ingId") 
+          return knex.raw(`INSERT INTO inventory ("userId", "ingId","pend","qty") VALUES (${userId},${result.rows[0].id},1,0) ON CONFLICT ("userId", "ingId")
               DO NOTHING`);
         });
       queries.push(appendIng);
@@ -56,7 +56,7 @@ module.exports = (knex, Mailgun) => {
   //   knex.select("userId")
   //   .from("inventory")
   //   .where({ingId: ingIndex})
-  //   .then ((results) => {            
+  //   .then ((results) => {
   //     if (userId in results){
   //       let invTotal = 0;
   //       knex.select("pend")
@@ -72,7 +72,7 @@ module.exports = (knex, Mailgun) => {
   //       knex('inventory')
   //         .where({
   //           id: userId
-  //         }) 
+  //         })
   //         .update({
   //           pend: invTotal
   //         });
@@ -194,7 +194,7 @@ module.exports = (knex, Mailgun) => {
 
     var api_key = 'key-8ebca617637b06e8626f753fff350232';
     var domain = 'sandbox06ad5db075d3448e9d0e02b238908ab4.mailgun.org';
-    var from_who = 'derp@derp.com';
+    var from_who = 'W.CHOU06@GMAIL.COM;
     //We pass the api_key and domain to the wrapper, or it won't be able to identify + send emails
     var mailgun = new Mailgun({ apiKey: api_key, domain: domain });
     // user's email, user's shopping list
@@ -217,7 +217,7 @@ module.exports = (knex, Mailgun) => {
             from: from_who,
             //The email to contact
             to: result[0].email,
-            //Subject and text data  
+            //Subject and text data
             subject: 'Your shopping list has arrived',
             html: `<h2>Shopping List</h2>${shoppingList}`
           }
@@ -244,7 +244,7 @@ module.exports = (knex, Mailgun) => {
     if (!userId) {
       return res.redirect("/");
     }
-    // select ingredients 
+    // select ingredients
     knex
       .select("ingredients.name") // ingId
       .from("inventory")
@@ -271,7 +271,7 @@ module.exports = (knex, Mailgun) => {
     if (!userId) {
       return res.redirect("/");
     }
-    // select ingredients 
+    // select ingredients
     knex
       .select("ingredients.name") // ingId
       .from("inventory")
