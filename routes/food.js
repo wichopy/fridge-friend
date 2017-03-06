@@ -120,7 +120,7 @@ module.exports = (knex, Mailgun) => {
   });
 
   // deletes item from pending inventory
-  food.post("/delPend", (req, res) => {
+  food.delete("/delPend", (req, res) => {
     let userId = req.session.user_id;
     if (!userId) {
       return res.redirect("/");
@@ -138,18 +138,12 @@ module.exports = (knex, Mailgun) => {
           })
       })
       .then(() => {
-        knex
-          .select("id")
-          .from("inventory")
+        return knex("inventory")
           .where({
             pend: 0,
-            inv: 0
+            qty: 0
           })
-          .then((results) => {
-            for (row of results) {
-              knex('inventory').where({ id: row }).del();
-            }
-          });
+          .del();
       })
 
     .then(() => {
@@ -161,7 +155,7 @@ module.exports = (knex, Mailgun) => {
       });
   });
 
-  food.post("/delInv", (req, res) => {
+  food.delete("/delInv", (req, res) => {
     let userId = req.session.user_id;
     if (!userId) {
       return res.redirect("/");
@@ -175,22 +169,16 @@ module.exports = (knex, Mailgun) => {
             ingId: result[0].id
           })
           .update({
-            inv: 0
+            qty: 0
           })
       })
       .then(() => {
-        knex
-          .select("id")
-          .from("inventory")
+        return knex("inventory")
           .where({
             pend: 0,
-            inv: 0
+            qty: 0
           })
-          .then((results) => {
-            for (row of results) {
-              knex('inventory').where({ id: row }).del();
-            }
-          });
+          .del();
       })
 
     .then(() => {

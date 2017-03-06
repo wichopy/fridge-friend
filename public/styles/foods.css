@@ -1,55 +1,65 @@
 .header {
-  height: 4em;
-  border: 2px solid black;
-  opacity: 0.8;
-  background-color: white;
+    height: 4em;
+    border: 2px solid black;
+    opacity: 0.8;
+    background-color: white;
 }
 
 #title {
-  display: inline;
-  line-height: 1.8em;
-  padding: 2em;
+    display: inline;
+    line-height: 1.8em;
+    padding: 2em;
+}
 
+.trashbutton {
+    visibility: hidden;
+}
+
+li.list-group-item:hover .trashbutton {
+    visibility: visible;
 }
 
 #logo {
-  height: 3em;
-  margin-bottom: 1em;
+    height: 3em;
+    margin-bottom: 1em;
 }
 
 .msg-to-user {
-  float:right;
-  display: inline;
-  margin-top: 1em;
-  margin-right: 1em;
+    float: right;
+    display: inline;
+    margin-top: 1em;
+    margin-right: 1em;
 }
 
 #logout-button {
-  float: right;
-  display: inline;
-  margin-top: 1em;
+    float: right;
+    display: inline;
+    margin-top: 1em;
 }
 
-html, body, .foods{
-  height: 100%;
+html,
+body,
+.foods {
+    height: 100%;
 }
 
 .list-box {
-  min-height: 85vh;
-  max-height: 85vh;
-  overflow: scroll;
+    min-height: 85vh;
+    max-height: 85vh;
+    overflow: scroll;
 }
 
 .foods h3 {
-  margin: 1em;
+    margin: 1em;
 }
 
 body {
-  margin: 0;
-  background-image: url("http://lamaisonaz.com/blog/wp-content/uploads/2015/02/iStock_000041811192_Large.jpg");
-  background-size: 1740px 900px;
-  background-repeat: no-repeat;
-  display: compact;
+    margin: 0;
+    background-image: url("http://lamaisonaz.com/blog/wp-content/uploads/2015/02/iStock_000041811192_Large.jpg");
+    background-size: 1740px 900px;
+    background-repeat: no-repeat;
+    display: compact;
 }
+
 
 /*# sourceMappingURL=foods.css.map */
