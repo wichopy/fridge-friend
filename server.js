@@ -16,7 +16,7 @@ const knexLogger = require('knex-logger');
 const methodOverride = require('method-override');
 const cookieSession = require('cookie-session');
 const bcrypt = require('bcrypt');
-
+const Mailgun = require('mailgun-js');
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const sessionRoutes = require("./routes/session");
@@ -69,7 +69,7 @@ app.use("/users", usersRoutes(knex, bcrypt));
 /*
 POST /users/new  -> Register new user
 */
-app.use("/food", foodRoutes(knex));
+app.use("/food", foodRoutes(knex, Mailgun));
 /*
 GET /food   --> Display grocery/tracking lists.
 */

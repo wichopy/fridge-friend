@@ -13,6 +13,8 @@
 
 .trashbutton {
     visibility: hidden;
+    margin-right: 1em;
+    margin-left: 1em;
 }
 
 li.list-group-item:hover .trashbutton {
@@ -61,5 +63,11 @@ body {
     display: compact;
 }
 
+#myBtn {
+  display: none;
+}
 
+#emailme {
+  display: none;
+}
 /*# sourceMappingURL=foods.css.map */

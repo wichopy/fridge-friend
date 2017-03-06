@@ -31,9 +31,28 @@ $(document).ready(() => {
         if (currentLi.text() === "") {
           // console.log($(this).val());
 
-          currentLi.html(`<span class="state-icon glyphicon glyphicon-unchecked"></span><input type="checkbox" class="hidden"><button type="button" class="btn btn-default trashbutton">
+          currentLi.html(`<span class="state-icon glyphicon glyphicon-unchecked"></span><input type="checkbox" class="hidden">${$(".food-item").val()}
+            <button type="button" class="btn btn-default trashbutton">
         <i class="fa fa-trash-o"></i>
-      </button> ${$(".food-item").val()}`);
+      </button> `);
+        currentLi.find(".trashbutton").on('click', (ev) => {
+          ev.stopPropagation();
+          $.ajax({
+            url: "/food/delPend",
+            method: "POST",
+            data: {
+              _method: "DELETE",
+              'food-item': $(this).closest('.list-group-item').text().trim()
+            }
+          })
+          .then(() => {
+            console.log("I got killed");
+            $(this).closest('.list-group-item').html(`<span class="state-icon glyphicon glyphicon-unchecked"></span><input type="checkbox" class="hidden">`);
+          })
+          .catch((err) => {
+            console.log(err)
+          });
+        });
           // >>>>>>> 4b1162876c4b26a3167e19f4d7f6302a614b204a
           $.ajax({
             url: "/food/shopping",
@@ -41,7 +60,7 @@ $(document).ready(() => {
             data: { 'food-item': $(".food-item").val().trim() }
           }).then((res) => {
             console.log('sucessful post');
-            $(".food-item").text('');
+            $(".food-item").val(''); //clear text box after saving.
 
           }).catch((err) => {
             console.error(err);
@@ -70,21 +89,26 @@ $(document).ready(() => {
 
 
       $(".checked-list-box.shopping li.active").each(function (idx, li) {
+        checkedItems.push($(li).text().trim());
+
         $.ajax({
           url: "/food/inventory",
           method: 'POST',
           data: { 'food-item': $(li).text().trim() }
         }).then((res) => {
           console.log('sucessful post');
+          $(li).html(`<span class="state-icon glyphicon glyphicon-check"></span><input type="checkbox" class="hidden">`);
+
         }).catch((err) => {
           console.error(err);
         });
       });
+      checkedItems;
     }
   });
 
   // $(function () {
-  $('.list-group.checked-list-box .list-group-item').each(function () {
+  $('.list-group.checked-list-box.shopping .list-group-item').each(function () {
 
     // Settings
     var $widget = $(this),
@@ -113,21 +137,6 @@ $(document).ready(() => {
       updateDisplay();
     });
 
-
-    $widget.css('cursor', 'pointer')
-    $widget.append($checkbox);
-
-    // Event Handlers
-    $widget.on('click', function () {
-      $checkbox.prop('checked', !$checkbox.is(':checked'));
-      $checkbox.triggerHandler('change');
-      updateDisplay();
-    });
-    $checkbox.on('change', function () {
-      updateDisplay();
-    });
-
-    // Actions
     function updateDisplay() {
       var isChecked = $checkbox.is(':checked');
 

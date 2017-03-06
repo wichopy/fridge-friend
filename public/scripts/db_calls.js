@@ -18,16 +18,22 @@ $(() => {
         <i class="fa fa-trash-o"></i>
       </button>`);
       currentLi.find(".trashbutton").on('click', (ev) => {
-        console.log($(this).closest('.list-group-item').text().trim());
+        var listgroupText = $(this).closest('.list-group-item').text();
+
         ev.stopPropagation();
         $.ajax({
           url: "/food/delPend",
           method: "POST",
           data: {
             _method: "DELETE",
-            'food-item': $(this).closest('.list-group-item').text().trim()
+            'food-item': listgroupText.trim()
           }
-        }).then(() => { console.log("I got killed"); }).catch((err) => { console.log(err) });
+        }).then(() => {
+          console.log("I got killed");
+          $(this).closest('.list-group-item').html(`<span class="state-icon glyphicon glyphicon-unchecked"></span><input type="checkbox" class="hidden">`);
+        }).catch((err) => {
+         console.log(err)
+        });
       });
       i++;
       if (i === res.length) return false;
@@ -63,7 +69,10 @@ $(() => {
               'food-item': $(this).closest('.list-group-item').text().trim()
             }
           })
-          .then(() => { console.log("I got killed"); })
+          .then(() => {
+            console.log("I got killed");
+$(this).closest('.list-group-item').html(`<span class="state-icon glyphicon glyphicon-unchecked"></span><input type="checkbox" class="hidden">`);
+          })
           .catch((err) => { console.log(err) });
       });
       i++;
@@ -78,18 +87,7 @@ $(() => {
         // data: { 'food-item': $(".food-item").val().trim() }
     }).then((res) => {
       console.log(res);
-
-      var i = 0;
-      $(".list-group.checked-list-box.inventory .list-group-item").each(function () {
-        var currentLi = $(this);
-        currentLi.html(
-          `<span class="state-icon glyphicon glyphicon-unchecked">
-        </span>
-        <input type="checkbox" class="hidden">
-        ${res[i].name}`);
-        i++;
-        if (i === res.length) return false;
-      });
+      console.log("email sent");
     }).catch((err) => {
       console.error(err);
     });
