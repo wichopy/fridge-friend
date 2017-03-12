@@ -194,7 +194,7 @@ module.exports = (knex, Mailgun) => {
 
     var api_key = 'key-8ebca617637b06e8626f753fff350232';
     var domain = 'sandbox06ad5db075d3448e9d0e02b238908ab4.mailgun.org';
-    var from_who = 'W.CHOU06@GMAIL.COM;
+    var from_who = 'W.CHOU06@GMAIL.COM';
     //We pass the api_key and domain to the wrapper, or it won't be able to identify + send emails
     var mailgun = new Mailgun({ apiKey: api_key, domain: domain });
     // user's email, user's shopping list
