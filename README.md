@@ -1,3 +1,6 @@
+![alt text](https://github.com/wichopy/fridge-friend/blob/master/Selection_002.png "Registration Page")
+
+
 # Node Skeleton
 
 ## Project Setup
