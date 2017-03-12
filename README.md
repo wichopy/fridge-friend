@@ -1,16 +1,16 @@
 
 ### Registration Page
-![alt text](https://github.com/wichopy/fridge-friend/blob/master/Selection_002.png "Registration Page")
+![alt text](https://github.com/wichopy/fridge-friend/blob/master/screenshots/Selection_002.png "Registration Page")
 
 ### Lists Page
-![alt text](https://github.com/wichopy/fridge-friend/blob/master/GroceryList.png "Grocery List")
+![alt text](https://github.com/wichopy/fridge-friend/blob/master/screenshots/GroceryList.png "Grocery List")
 
 ### Select Purchased Groceries
-![alt text](https://github.com/wichopy/fridge-friend/blob/master/SelectPurchasedGroceries.png "Select Purchased Groceries")
+![alt text](https://github.com/wichopy/fridge-friend/blob/master/screenshots/SelectPurchasedGroceries.png "Select Purchased Groceries")
 
 ### Select Ingredients and Find Recipes!
-![alt text](https://github.com/wichopy/fridge-friend/blob/master/SelectIngredientsForRecipes.png "Select Ingredients")
-![alt text](https://github.com/wichopy/fridge-friend/blob/master/RecipeList.png "Select Recipes")
+![alt text](https://github.com/wichopy/fridge-friend/blob/master/screenshots/SelectIngredientsForRecipes.png "Select Ingredients")
+![alt text](https://github.com/wichopy/fridge-friend/blob/master/screenshots/RecipeList.png "Select Recipes")
 
 # Node Skeleton
 
