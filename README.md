@@ -1,5 +1,12 @@
+
+### Registration Page
 ![alt text](https://github.com/wichopy/fridge-friend/blob/master/Selection_002.png "Registration Page")
 
+### Lists Page
+
+### Select Purchased Groceries
+
+### Select Ingredients and Find Recipes!
 
 # Node Skeleton
 
