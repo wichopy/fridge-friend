@@ -27,9 +27,9 @@
 ## Getting Started
 
 1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
-2. Update the .env file with your correct local information
+2. Update the .env file with your correct local information (we used POSTGRES)
 3. Install dependencies: `npm i`
-3a. You will need to run npm install -g nodemon (its a must have if your running express)
+3. You will need to run npm install -g nodemon (its a must have if your running express)
 4. Fix to binaries for sass: `npm rebuild node-sass`
 5. Run migrations: `npm run knex migrate:latest`
   - Check the migrations folder to see what gets created in the DB
